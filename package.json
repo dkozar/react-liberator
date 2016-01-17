@@ -1,0 +1,32 @@
+{
+  "name": "react-liberator",
+  "version": "1.0.0",
+  "description": "Liberates React component DOM from its siblings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkozar/react-liberator.git"
+  },
+  "keywords": [
+    "Rreact",
+    "RreactJS",
+    "DOM",
+    "sibling",
+    "child",
+    "render",
+    "different",
+    "DIV",
+    "node",
+    "liberate",
+    "separate"
+  ],
+  "author": "Danko Kozar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dkozar/react-liberator/issues"
+  },
+  "homepage": "https://github.com/dkozar/react-liberator#readme"
+}
