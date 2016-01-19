@@ -8,7 +8,11 @@ Enables React component to render its DOM away from its siblings.
 
 This feature is the basis for building a proper windowing system (in any technology).
 
-![Liberator!](http://dankokozar.com/images/liberator.png)
+![Liberator!](http://dankokozar.com/images/react-liberator-1.png)
+
+![Liberator!](http://dankokozar.com/images/react-liberator-2.png)
+
+![Liberator!](http://dankokozar.com/images/react-liberator-3.png)
 
 ## :tv: Demo
 
