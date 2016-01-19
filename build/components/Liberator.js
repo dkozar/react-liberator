@@ -5,7 +5,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Liberator = undefined;
 
 var _index = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/redbox-react/lib/index.js');
 
@@ -25,9 +24,7 @@ var _index6 = _interopRequireDefault(_index5);
 
 var _reactDom = require('react-dom');
 
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -64,9 +61,8 @@ function _wrapComponent(id) {
 }
 
 var DEFAULT_LIBERATOR_LAYER_ID = '___liberator___';
-var count = 0;
 
-var Liberator = exports.Liberator = _wrapComponent('Liberator')(function (_Component) {
+var Liberator = _wrapComponent('Liberator')(function (_Component) {
     _inherits(Liberator, _Component);
 
     function Liberator(props) {
@@ -84,7 +80,6 @@ var Liberator = exports.Liberator = _wrapComponent('Liberator')(function (_Compo
     _createClass(Liberator, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
-            //console.log('liberator mount');
             var layerId = this.props.layerId,
                 layerElement = document.getElementById(layerId),
                 parentElement;
@@ -97,10 +92,8 @@ var Liberator = exports.Liberator = _wrapComponent('Liberator')(function (_Compo
 
             this.state.layerElement = layerElement;
 
-            count += 1;
-
             parentElement = document.createElement('div');
-            parentElement.setAttribute('id', this.props.layerId + count + '___');
+            parentElement.className = this.props.className || '';
             this.state.parentElement = parentElement;
 
             layerElement.appendChild(parentElement);
@@ -110,39 +103,46 @@ var Liberator = exports.Liberator = _wrapComponent('Liberator')(function (_Compo
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            //console.log('liberator unmount');
-            this.doRender(null);
+            this.state.layerElement.removeChild(this.state.parentElement);
+            this.setState({
+                layerElement: null
+            });
+
+            _reactDom2.default.unmountComponentAtNode(this.state.parentElement);
         }
     }, {
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate() {
-            //console.log('liberator componentWillUpdate');
-            this.doRender(this.props.children);
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(newProps) {
+            return this.doRender(newProps.children);
         }
     }, {
         key: 'render',
         value: function render() {
-            return null;
+            return null; // short circuit here
         }
     }, {
         key: 'doRender',
         value: function doRender(children) {
-            var styles = _lodash2.default.assign({
-                position: 'fixed',
-                top: 0,
-                left: 0
-            }, this.props.styles);
+            if (!children) {
+                return null;
+            }
 
-            (0, _reactDom.render)(_react3.default.createElement(
-                'div',
-                { style: styles },
-                children
-            ), this.state.parentElement);
+            if (children.length > 1) {
+                children = _react3.default.createElement(
+                    'div',
+                    null,
+                    children
+                );
+            }
+
+            return (0, _reactDom.render)(children, this.state.parentElement);
         }
     }]);
 
     return Liberator;
 }(_react2.Component));
+
+exports.default = Liberator;
 
 Liberator.propTypes = { layerId: _react3.default.PropTypes.string };
 Liberator.defaultProps = { layerId: DEFAULT_LIBERATOR_LAYER_ID, styles: {} };

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {render} from 'react-dom';
-import _ from 'lodash';
 
 const DEFAULT_LIBERATOR_LAYER_ID = '___liberator___';
-var count = 0;
+
 export default class Liberator extends Component {
 
     constructor(props) {
@@ -16,7 +15,6 @@ export default class Liberator extends Component {
     }
 
     componentWillMount() {
-        //console.log('liberator mount');
         var layerId = this.props.layerId,
             layerElement = document.getElementById(layerId),
             parentElement;
@@ -28,8 +26,6 @@ export default class Liberator extends Component {
         }
 
         this.state.layerElement = layerElement;
-
-        count += 1;
 
         parentElement = document.createElement('div');
         parentElement.className = this.props.className || '';
