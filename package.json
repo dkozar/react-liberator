@@ -1,32 +1,70 @@
 {
   "name": "react-liberator",
   "version": "1.0.0",
-  "description": "Liberates React component DOM from its siblings",
+  "description": "Liberates React component from captivity of its siblings",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf dist",
+    "debug:webpack": "NODE_ENV=production webpack --config webpack.config.debug.js",
+    "debug": "npm run clean && npm run debug:webpack",
+    "demo:webpack": "NODE_ENV=production webpack --config webpack.config.demo.js",
+    "demo": "npm run clean && npm run demo:webpack",
+    "dist:build": "bash build.sh",
+    "dist:webpack": "NODE_ENV=production webpack --config webpack.config.dist.js",
+    "dist": "npm run clean && npm run dist:build && npm run dist:webpack",
+    "start": "node devServer.js",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dkozar/react-liberator.git"
   },
   "keywords": [
-    "Rreact",
-    "RreactJS",
-    "DOM",
+    "react",
+    "reactjs",
+    "dom",
+    "element",
+    "node",
     "sibling",
     "child",
+    "parent",
     "render",
     "different",
-    "DIV",
-    "node",
+    "div",
     "liberate",
     "separate"
   ],
-  "author": "Danko Kozar",
+  "author": "Danko Kozar <github@dankokozar.com> (http://github.com/dkozar)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dkozar/react-liberator/issues"
   },
-  "homepage": "https://github.com/dkozar/react-liberator#readme"
+  "homepage": "https://github.com/dkozar/react-liberator#readme",
+  "devDependencies": {
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.3.15",
+    "babel-eslint": "^5.0.0-beta4",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.0.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^1.10.3",
+    "eslint-plugin-babel": "^3.0.0",
+    "eslint-plugin-react": "^3.11.3",
+    "eventsource-polyfill": "^0.9.6",
+    "express": "^4.13.3",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "react-bootstrap": "^0.28.2",
+    "rimraf": "^2.4.3",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
+  },
+  "dependencies": {
+    "lodash": "^4.0.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  }
 }

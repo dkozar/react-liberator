@@ -1,0 +1,98 @@
+[![NPM](https://nodei.co/npm/react-liberator.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/react-liberator)
+
+[![NPM](https://badge.fury.io/js/react-liberator.png)](https://www.npmjs.com/package/react-liberator)
+
+# React Liberator
+
+Enables React component to render its DOM away from its siblings.
+
+This feature is the basis for building a proper windowing system (in any technology).
+
+![Liberator!](http://dankokozar.com/images/liberator.png)
+
+## :zap: Usage
+
+```js
+// ES6
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import Liberator from 'react-liberator';
+
+export class App extends Component {
+
+    render() {
+        return (
+            <div>
+
+                <Button>Click me</Button>
+                <Liberator>
+                    <Popup>I'm in popup</Popup>
+                </Liberator>
+
+            </div>
+        );
+    }
+}
+
+render(<App />, document.body);
+```
+
+## :truck: Installation
+
+### Use it as the NPM package:
+
+```bash
+npm install react-liberator --save
+```
+
+This will install the package into the *node_modules* folder of your project.
+
+### Or, download the project source:
+
+```bash
+git clone https://github.com/dkozar/react-liberator.git
+cd react-liberator
+npm install
+```
+
+*npm install* will install all the dependencies (and their dependencies) into the *node_modules* folder.
+
+Then, you should run one of the builds.
+
+### :rocket: Run the hot-loader build (local)
+
+```bash
+npm start
+open http://localhost:3000
+```
+
+This will give you the build that will partially update the browser via *webpack* whenever you save the edited source file.
+
+Additionally, it will keep the React component state *intact*.
+
+For more info on React hot-loader, take a look into [this fantastic video](https://www.youtube.com/watch?v=xsSnOQynTHs).
+
+### :airplane: Run the minified demo build
+
+```bash
+npm run demo
+```
+This should build the *demo* folder. This is how the [demo](http://dkozar.github.io/react-liberator/) is built.
+
+### :helicopter: Run the non-minified demo build
+
+```bash
+npm run debug
+```
+This should build the *demo* folder. Non-minified for easier debugging.
+
+You could install the http-server for running the demo builds:
+
+```bash
+npm install http-server
+http-server
+```
+
+## Thanks to:
+
+:rocket: [React Transform Boilerplate](https://github.com/gaearon/react-transform-boilerplate) for workflow.
