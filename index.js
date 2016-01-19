@@ -1,1 +1,1 @@
-module.exports = require('./src/components/Liberator');
+module.exports = require('./build/components/Liberator');
