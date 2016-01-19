@@ -10,10 +10,6 @@ This feature is the basis for building a proper windowing system (in any technol
 
 ![Liberator!](http://dankokozar.com/images/react-liberator-1.png)
 
-![Liberator!](http://dankokozar.com/images/react-liberator-2.png)
-
-![Liberator!](http://dankokozar.com/images/react-liberator-3.png)
-
 ## :tv: Demo
 
 http://dkozar.github.io/react-liberator/
@@ -111,3 +107,8 @@ http-server
 ## Thanks to:
 
 :rocket: [React Transform Boilerplate](https://github.com/gaearon/react-transform-boilerplate) for workflow.
+
+
+![Liberator!](http://dankokozar.com/images/react-liberator-2.png)
+
+![Liberator!](http://dankokozar.com/images/react-liberator-3.png)
