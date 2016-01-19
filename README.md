@@ -10,25 +10,36 @@ This feature is the basis for building a proper windowing system (in any technol
 
 ![Liberator!](http://dankokozar.com/images/liberator.png)
 
+## :tv: Demo
+
+http://dkozar.github.io/react-liberator/
+
 ## :zap: Usage
 
 ```js
 // ES6
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import Liberator from 'react-liberator';
+import ReactDOM from 'react-dom';
+import { Button } from 'react-bootstrap';
+import Liberator from './Liberator';
 
 export class App extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            text: 'I\'m rendered in an overlay'
+        };
+    }
 
     render() {
         return (
             <div>
-
-                <Button>Click me</Button>
+                <Button>The sibling</Button>
                 <Liberator>
-                    <Popup>I'm in popup</Popup>
+                    <div>{this.state.text}</div>
                 </Liberator>
-
             </div>
         );
     }

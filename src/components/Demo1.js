@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Alert, Button } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
