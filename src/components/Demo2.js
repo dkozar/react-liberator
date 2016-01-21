@@ -31,7 +31,6 @@ export default class Demo2 extends Component {
         this.setState({
             visible: !this.state.visible
         });
-        console.log(this.state);
     }
 
     hidePopup() {
@@ -41,7 +40,6 @@ export default class Demo2 extends Component {
     }
 
     onTextChange(text) {
-        console.log('onTextChange', text)
         this.setState({
             text: text
         });
@@ -65,7 +63,7 @@ export default class Demo2 extends Component {
 
                                 <Toolbar
                                     showButton={false}
-                                    visible={this.state.visible}
+                                    visible={visible}
                                     selectedIndex={this.state.selectedIndex}
                                     text={this.state.text}
                                     onVisibilityChange={this.onVisibilityChange}

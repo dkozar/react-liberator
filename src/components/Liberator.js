@@ -15,6 +15,17 @@ export default class Liberator extends Component {
     }
 
     componentWillMount() {
+        if (this.props.active) {
+            this.activate();
+            this.doRender(this.props.children);
+        }
+    }
+
+    componentWillUnmount() {
+        this.deactivate();
+    }
+
+    activate() {
         var layerId = this.props.layerId,
             layerElement = document.getElementById(layerId),
             parentElement;
@@ -32,40 +43,68 @@ export default class Liberator extends Component {
         this.state.parentElement = parentElement;
 
         layerElement.appendChild(parentElement);
-
-        this.doRender(this.props.children);
     }
 
-    componentWillUnmount() {
-        this.state.layerElement.removeChild(this.state.parentElement);
-        this.setState({
-            layerElement: null
-        });
-
-        ReactDOM.unmountComponentAtNode(this.state.parentElement);
+    deactivate() {
+        if (this.state.parentElement) {
+            if (this.state.layerElement) {
+                this.state.layerElement.removeChild(this.state.parentElement);
+            }
+            this.setState({
+                layerElement: null
+            });
+            ReactDOM.unmountComponentAtNode(this.state.parentElement);
+        }
     }
 
     componentWillReceiveProps(newProps) {
-        return this.doRender(newProps.children);
+        if (newProps.active !== this.props.active) {
+            if (newProps.active) {
+                this.activate();
+            } else {
+                this.deactivate();
+            }
+        }
+
+        if (newProps.active) {
+            return this.doRender(newProps.children);
+        } else {
+            return null;
+        }
+
     }
 
     render() {
-        return null; // short circuit here
+        if (this.props.active) {
+            return null; // short circuit here
+        } else {
+            return this.wrapChildren(this.props.children);
+        }
     }
 
-    doRender(children) {
+    wrapChildren(children) {
         if (!children) {
             return null;
         }
 
         if (children.length > 1) {
-            children = (<div>
+            return (<div>
                 {children}
             </div>);
         }
 
-        return render(children, this.state.parentElement);
+        return children;
+    }
+
+    doRender(children) {
+        return render(this.wrapChildren(children), this.state.parentElement);
     }
 }
-Liberator.propTypes = { layerId: React.PropTypes.string };
-Liberator.defaultProps = { layerId: DEFAULT_LIBERATOR_LAYER_ID, styles: {} };
+Liberator.propTypes = {
+    layerId: React.PropTypes.string,
+    detach: React.PropTypes.bool
+};
+Liberator.defaultProps = {
+    layerId: DEFAULT_LIBERATOR_LAYER_ID,
+    active: true
+};

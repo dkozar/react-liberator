@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 
 const texts = [
-        'This is the Liberator.',
-        'It liberates the component from captivity of its siblings.',
-        'It\'s the foundation for popups.'
-    ];
+    'This is the Liberator.',
+    'It liberates the component from captivity of its siblings.',
+    'It\'s the foundation for popups.'
+];
 
 export default class Toolbar extends Component {
 

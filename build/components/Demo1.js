@@ -95,12 +95,10 @@ var Demo1 = _wrapComponent('Demo1')(function (_Component) {
             this.setState({
                 visible: !this.state.visible
             });
-            console.log(this.state);
         }
     }, {
         key: 'onTextChange',
         value: function onTextChange(text) {
-            console.log('onTextChange', text);
             this.setState({
                 text: text
             });
@@ -147,7 +145,7 @@ var Demo1 = _wrapComponent('Demo1')(function (_Component) {
                     'Also check the HTML in the console.'
                 ),
                 _react3.default.createElement(_Toolbar2.default, {
-                    visible: this.state.visible,
+                    visible: visible,
                     selectedIndex: this.state.selectedIndex,
                     text: this.state.text,
                     onVisibilityChange: this.onVisibilityChange,

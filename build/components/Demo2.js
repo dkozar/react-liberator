@@ -96,7 +96,6 @@ var Demo2 = _wrapComponent('Demo2')(function (_Component) {
             this.setState({
                 visible: !this.state.visible
             });
-            console.log(this.state);
         }
     }, {
         key: 'hidePopup',
@@ -108,7 +107,6 @@ var Demo2 = _wrapComponent('Demo2')(function (_Component) {
     }, {
         key: 'onTextChange',
         value: function onTextChange(text) {
-            console.log('onTextChange', text);
             this.setState({
                 text: text
             });
@@ -147,7 +145,7 @@ var Demo2 = _wrapComponent('Demo2')(function (_Component) {
                             _react3.default.createElement('br', null),
                             _react3.default.createElement(_Toolbar2.default, {
                                 showButton: false,
-                                visible: this.state.visible,
+                                visible: visible,
                                 selectedIndex: this.state.selectedIndex,
                                 text: this.state.text,
                                 onVisibilityChange: this.onVisibilityChange,

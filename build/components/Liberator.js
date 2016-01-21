@@ -80,6 +80,19 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
     _createClass(Liberator, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
+            if (this.props.active) {
+                this.activate();
+                this.doRender(this.props.children);
+            }
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.deactivate();
+        }
+    }, {
+        key: 'activate',
+        value: function activate() {
             var layerId = this.props.layerId,
                 layerElement = document.getElementById(layerId),
                 parentElement;
@@ -97,45 +110,67 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
             this.state.parentElement = parentElement;
 
             layerElement.appendChild(parentElement);
-
-            this.doRender(this.props.children);
         }
     }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            this.state.layerElement.removeChild(this.state.parentElement);
-            this.setState({
-                layerElement: null
-            });
-
-            _reactDom2.default.unmountComponentAtNode(this.state.parentElement);
+        key: 'deactivate',
+        value: function deactivate() {
+            if (this.state.parentElement) {
+                if (this.state.layerElement) {
+                    this.state.layerElement.removeChild(this.state.parentElement);
+                }
+                this.setState({
+                    layerElement: null
+                });
+                _reactDom2.default.unmountComponentAtNode(this.state.parentElement);
+            }
         }
     }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(newProps) {
-            return this.doRender(newProps.children);
+            if (newProps.active !== this.props.active) {
+                if (newProps.active) {
+                    this.activate();
+                } else {
+                    this.deactivate();
+                }
+            }
+
+            if (newProps.active) {
+                return this.doRender(newProps.children);
+            } else {
+                return null;
+            }
         }
     }, {
         key: 'render',
         value: function render() {
-            return null; // short circuit here
+            if (this.props.active) {
+                return null; // short circuit here
+            } else {
+                    return this.wrapChildren(this.props.children);
+                }
         }
     }, {
-        key: 'doRender',
-        value: function doRender(children) {
+        key: 'wrapChildren',
+        value: function wrapChildren(children) {
             if (!children) {
                 return null;
             }
 
             if (children.length > 1) {
-                children = _react3.default.createElement(
+                return _react3.default.createElement(
                     'div',
                     null,
                     children
                 );
             }
 
-            return (0, _reactDom.render)(children, this.state.parentElement);
+            return children;
+        }
+    }, {
+        key: 'doRender',
+        value: function doRender(children) {
+            return (0, _reactDom.render)(this.wrapChildren(children), this.state.parentElement);
         }
     }]);
 
@@ -144,5 +179,11 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
 
 exports.default = Liberator;
 
-Liberator.propTypes = { layerId: _react3.default.PropTypes.string };
-Liberator.defaultProps = { layerId: DEFAULT_LIBERATOR_LAYER_ID, styles: {} };
+Liberator.propTypes = {
+    layerId: _react3.default.PropTypes.string,
+    detach: _react3.default.PropTypes.bool
+};
+Liberator.defaultProps = {
+    layerId: DEFAULT_LIBERATOR_LAYER_ID,
+    active: true
+};

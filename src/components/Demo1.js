@@ -30,11 +30,9 @@ export default class Demo1 extends Component {
         this.setState({
             visible: !this.state.visible
         });
-        console.log(this.state);
     }
 
     onTextChange(text) {
-        console.log('onTextChange', text)
         this.setState({
             text: text
         });
@@ -58,7 +56,7 @@ export default class Demo1 extends Component {
                     Also check the HTML in the console.
                 </Alert>
                 <Toolbar
-                    visible={this.state.visible}
+                    visible={visible}
                     selectedIndex={this.state.selectedIndex}
                     text={this.state.text}
                     onVisibilityChange={this.onVisibilityChange}

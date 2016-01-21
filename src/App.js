@@ -3,13 +3,15 @@ import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 import Demo1 from './components/Demo1';
 import Demo2 from './components/Demo2';
 import Demo3 from './components/Demo3';
+import Demo4 from './components/Demo4';
 
 require('./styles/main.css');
 
 var options = [
         'Demo 1 - Liberate!',
         'Demo 2 - Popup',
-        'Demo 3 - Full screen'
+        'Demo 3 - Activate / deactivate',
+        'Demo 4 - Full screen'
     ];
 
 export class App extends Component {
@@ -50,6 +52,9 @@ export class App extends Component {
             case 2:
                 demo = <Demo3 />;
                 break;
+            case 3:
+                demo = <Demo4 />;
+                break;
         }
 
         return (
@@ -63,10 +68,11 @@ export class App extends Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav>
-                            <NavDropdown onSelect={this.onChange} eventKey={3} title={this.state.label} id="basic-nav-dropdown">
+                            <NavDropdown onSelect={this.onChange} title={this.state.label} id="basic-nav-dropdown">
                                 <MenuItem eventKey={0}>{options[0]}</MenuItem>
                                 <MenuItem eventKey={1}>{options[1]}</MenuItem>
                                 <MenuItem eventKey={2}>{options[2]}</MenuItem>
+                                <MenuItem eventKey={3}>{options[3]}</MenuItem>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>

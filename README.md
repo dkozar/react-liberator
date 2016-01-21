@@ -48,6 +48,14 @@ export class App extends Component {
 render(<App />, document.body);
 ```
 
+or:
+
+```js
+<Liberator active={active}>
+    <div>Popup</div>
+</Liberator>
+```
+
 ## :truck: Installation
 
 ### Use it as the NPM package:
@@ -58,7 +66,7 @@ npm install react-liberator --save
 
 This will install the package into the *node_modules* folder of your project.
 
-### Or, download the project source:
+### Or download the project source:
 
 ```bash
 git clone https://github.com/dkozar/react-liberator.git
