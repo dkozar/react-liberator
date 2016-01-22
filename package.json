@@ -1,7 +1,7 @@
 {
   "name": "react-liberator",
-  "version": "1.0.2",
-  "description": "Liberates React component from captivity of its siblings",
+  "version": "1.0.3",
+  "description": "Liberates React components from the captivity of their siblings",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
@@ -55,6 +55,7 @@
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
+    "fullscreen": "^1.0.2",
     "react-bootstrap": "^0.28.2",
     "rimraf": "^2.4.3",
     "style-loader": "^0.13.0",

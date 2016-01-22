@@ -6,8 +6,8 @@ import Liberator from './Liberator';
 require('./../styles/demo2.css');
 
 const texts = [
-    'This is the liberator.',
-    'It liberates the component from captivity of its siblings.',
+    'This is Liberator.',
+    'It liberates components from captivity of their siblings.',
     'It\'s a foundation for popups.'
 ];
 
@@ -85,7 +85,7 @@ export default class Demo2 extends Component {
 
         return (
             <div>
-                <Alert bsStyle="info">
+                <Alert bsStyle="success">
                     <h3>Demo 2 - Popup</h3><br/>
                     <strong>Open the popup.</strong><br/><br/>
                     It should be displayed in an overlay.<br/><br/>

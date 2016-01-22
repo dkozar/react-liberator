@@ -41,20 +41,20 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _components = {
-    Demo4: {
-        displayName: 'Demo4'
+    Demo5: {
+        displayName: 'Demo5'
     }
 };
 
 var _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-    filename: 'src/components/Demo4.js',
+    filename: 'src/components/Demo5.js',
     components: _components,
     locals: [module],
     imports: [_react3.default]
 });
 
 var _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-    filename: 'src/components/Demo4.js',
+    filename: 'src/components/Demo5.js',
     components: _components,
     locals: [],
     imports: [_react3.default, _index2.default]
@@ -68,41 +68,90 @@ function _wrapComponent(id) {
 
 var fullscreen = require('fullscreen');
 
-require('./../styles/demo4.css');
+require('./../styles/demo5.css');
 
-var Demo4 = _wrapComponent('Demo4')(function (_Component) {
-    _inherits(Demo4, _Component);
+var Demo5 = _wrapComponent('Demo5')(function (_Component) {
+    _inherits(Demo5, _Component);
 
-    function Demo4(props) {
-        _classCallCheck(this, Demo4);
+    function Demo5(props) {
+        _classCallCheck(this, Demo5);
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Demo4).call(this, props));
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Demo5).call(this, props));
 
         _this.state = {
-            maximized: false,
+            fullScreen: false,
+            fullScreenRequest: false,
             text: 'This is Liberator.'
         };
 
         _this.onButtonClick = _this.onButtonClick.bind(_this);
+        _this.onFullScreenAttain = _this.syncWithFullScreenState.bind(_this, true);
+        _this.onFullScreenRelease = _this.syncWithFullScreenState.bind(_this, false);
         return _this;
     }
 
-    // button toggles maximized screen
+    // button toggles full screen
 
-    _createClass(Demo4, [{
+    _createClass(Demo5, [{
         key: 'onButtonClick',
         value: function onButtonClick() {
+            var isOn = !this.state.fullScreen;
+
             this.setState({
-                maximized: !this.state.maximized
+                fullScreenRequest: isOn
             });
+
+            this.initiateFullScreen(isOn);
+        }
+    }, {
+        key: 'initiateFullScreen',
+        value: function initiateFullScreen(isOn) {
+            if (isOn) {
+                this.fsEmitter.request();
+            } else {
+                this.fsEmitter.release();
+            }
+        }
+
+        // we are changing the fullScreen state indirectly (we initiate the full screen and then listen to its changes)
+        // this is the more robust way to keep our app in sync with full screen (whichever way the full screen is initiated or terminated)
+
+    }, {
+        key: 'syncWithFullScreenState',
+        value: function syncWithFullScreenState(isOn) {
+            console.log('full screen', isOn);
+            this.setState({
+                fullScreen: isOn
+            });
+        }
+    }, {
+        key: 'onFullScreenError',
+        value: function onFullScreenError(error) {
+            this.setState({
+                fullScreen: false
+            });
+            console.log('Full screen isn\'t supported by this browser', error);
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.fsEmitter = fullscreen(document.body); // just for fun, let's pick another element (and not liberator overlay)
+            this.fsEmitter.on('attain', this.onFullScreenAttain);
+            this.fsEmitter.on('release', this.onFullScreenRelease);
+            this.fsEmitter.on('error', this.onFullScreenError);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.fsEmitter.dispose();
         }
     }, {
         key: 'render',
         value: function render() {
-            var maximized = this.state.maximized,
-                buttonIcon = maximized ? _react3.default.createElement('span', { className: 'glyphicon glyphicon-star' }) : _react3.default.createElement('span', { className: 'glyphicon glyphicon-star-empty' }),
-                buttonText = maximized ? 'Minimize' : 'Maximize',
-                panelTitle = maximized ? 'This is the maximized panel' : 'This is the panel',
+            var fullScreen = this.state.fullScreen,
+                buttonIcon = fullScreen ? _react3.default.createElement('span', { className: 'glyphicon glyphicon-star' }) : _react3.default.createElement('span', { className: 'glyphicon glyphicon-star-empty' }),
+                buttonText = fullScreen ? 'Exit full screen' : 'Show full screen',
+                panelTitle = fullScreen ? 'This is the panel in full screen mode' : 'This is the panel',
                 text = _react3.default.createElement(
                 'div',
                 null,
@@ -139,31 +188,31 @@ var Demo4 = _wrapComponent('Demo4')(function (_Component) {
                 null,
                 _react3.default.createElement(
                     _reactBootstrap.Alert,
-                    { bsStyle: 'success' },
+                    { bsStyle: 'info' },
                     _react3.default.createElement(
                         'h3',
                         null,
-                        'Demo 4 - Maximized popup'
+                        'Demo 5 - Full screen sync'
                     ),
                     _react3.default.createElement('br', null),
                     _react3.default.createElement(
                         'strong',
                         null,
-                        'Click the button to show panel maximized.'
+                        'Click the button to show panel in full screen.'
                     ),
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
                     'It should be displayed in an overlay.',
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
-                    'Panel is being maximized using styles (see demo4.css).',
+                    'Its size is kept in sync with a full screen state (maximized when in full screen mode).',
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null)
                 ),
                 _react3.default.createElement(
                     _Liberator2.default,
                     { className: 'full-screen',
-                        active: maximized },
+                        active: fullScreen },
                     _react3.default.createElement(
                         'div',
                         null,
@@ -174,7 +223,7 @@ var Demo4 = _wrapComponent('Demo4')(function (_Component) {
         }
     }]);
 
-    return Demo4;
+    return Demo5;
 }(_react2.Component));
 
-exports.default = Demo4;
+exports.default = Demo5;

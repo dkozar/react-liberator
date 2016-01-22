@@ -3,7 +3,7 @@ import { Alert, Button } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
 
-require('./../styles/demo4.css');
+require('./../styles/demo3.css');
 
 export default class Demo3 extends Component {
 

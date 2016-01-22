@@ -1,13 +1,21 @@
-.panel {
-    width: 800px;
+.popup {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    text-align: center;
+    font-size: 50px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    text-shadow: 3px 3px 2px rgba(0, 0, 0, 1);
+    background-color: #888888;
+    padding: 20px;
+    margin: 10px;
 }
 
-.full-screen .panel {
-    position: fixed;
-    width: auto;
-    margin: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+.green {
+    background-color: #2ead6d;
+}
+
+.red {
+    background-color: #e31d65;
 }

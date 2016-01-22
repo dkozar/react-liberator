@@ -14,6 +14,12 @@ This feature is the basis for building a proper windowing system (in any technol
 
 http://dkozar.github.io/react-liberator/
 
+* Demo 1 - Liberate!
+* Demo 2 - Popup
+* Demo 3 - Activate / deactivate
+* Demo 4 - Maximized popup
+* Demo 5 - Full screen sync
+
 ## :zap: Usage
 
 ```js
@@ -48,10 +54,18 @@ export class App extends Component {
 render(<App />, document.body);
 ```
 
-or:
+Or use it as a switch:
 
 ```js
 <Liberator active={active}>
+    <div>Popup</div>
+</Liberator>
+```
+
+Or render it to a predefined div:
+
+```js
+<Liberator layerId={layerId}>
     <div>Popup</div>
 </Liberator>
 ```

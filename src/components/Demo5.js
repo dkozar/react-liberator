@@ -4,35 +4,77 @@ import Toolbar from './Toolbar';
 import Liberator from './Liberator';
 var fullscreen = require('fullscreen')
 
-require('./../styles/demo4.css');
+require('./../styles/demo5.css');
 
-export default class Demo4 extends Component {
+export default class Demo5 extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            maximized: false,
+            fullScreen: false,
+            fullScreenRequest: false,
             text: 'This is Liberator.'
         };
 
         this.onButtonClick = this.onButtonClick.bind(this);
+        this.onFullScreenAttain = this.syncWithFullScreenState.bind(this, true);
+        this.onFullScreenRelease = this.syncWithFullScreenState.bind(this, false);
     }
 
-    // button toggles maximized screen
+    // button toggles full screen
     onButtonClick() {
+        var isOn = !this.state.fullScreen;
+
         this.setState({
-            maximized: !this.state.maximized
+            fullScreenRequest: isOn
+        });
+
+        this.initiateFullScreen(isOn);
+    }
+
+    initiateFullScreen(isOn) {
+        if (isOn) {
+            this.fsEmitter.request();
+        } else {
+            this.fsEmitter.release()
+        }
+    }
+
+    // we are changing the fullScreen state indirectly (we initiate the full screen and then listen to its changes)
+    // this is the more robust way to keep our app in sync with full screen (whichever way the full screen is initiated or terminated)
+    syncWithFullScreenState(isOn) {
+        console.log('full screen', isOn);
+        this.setState({
+            fullScreen: isOn
         });
     }
 
+    onFullScreenError(error) {
+        this.setState({
+            fullScreen: false
+        });
+        console.log('Full screen isn\'t supported by this browser', error);
+    }
+
+    componentDidMount() {
+        this.fsEmitter = fullscreen(document.body); // just for fun, let's pick another element (and not liberator overlay)
+        this.fsEmitter.on('attain', this.onFullScreenAttain);
+        this.fsEmitter.on('release', this.onFullScreenRelease);
+        this.fsEmitter.on('error', this.onFullScreenError);
+    }
+
+    componentWillUnmount() {
+        this.fsEmitter.dispose();
+    }
+
     render() {
-        var maximized = this.state.maximized,
-            buttonIcon = maximized ?
+        var fullScreen = this.state.fullScreen,
+            buttonIcon = fullScreen ?
                 <span className="glyphicon glyphicon-star"></span> :
                 <span className="glyphicon glyphicon-star-empty"></span>,
-            buttonText = maximized ? 'Minimize' : 'Maximize',
-            panelTitle = maximized ? 'This is the maximized panel' : 'This is the panel',
+            buttonText = fullScreen ? 'Exit full screen' : 'Show full screen',
+            panelTitle = fullScreen ? 'This is the panel in full screen mode' : 'This is the panel',
 
             text = (
                 <div>
@@ -52,12 +94,12 @@ export default class Demo4 extends Component {
 
         return (
             <div>
-                <Alert bsStyle="success">
-                    <h3>Demo 4 - Maximized popup</h3><br/>
-                    <strong>Click the button to show panel maximized.</strong><br/><br/>It should be displayed in an overlay.<br/><br/>Panel is being maximized using styles (see demo4.css).<br/><br/>
+                <Alert bsStyle="info">
+                    <h3>Demo 5 - Full screen sync</h3><br/>
+                    <strong>Click the button to show panel in full screen.</strong><br/><br/>It should be displayed in an overlay.<br/><br/>Its size is kept in sync with a full screen state (maximized when in full screen mode).<br/><br/>
                 </Alert>
                 <Liberator className="full-screen"
-                    active={maximized}>
+                    active={fullScreen}>
                     <div>
                         {popup}
                     </div>

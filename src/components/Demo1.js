@@ -6,8 +6,8 @@ import Liberator from './Liberator';
 require('./../styles/demo1.css');
 
 const texts = [
-        'This is the liberator.',
-        'It liberates the component from captivity of its siblings.',
+        'This is Liberator.',
+        'It liberates components from captivity of their siblings.',
         'It\'s the foundation for popups.'
     ];
 

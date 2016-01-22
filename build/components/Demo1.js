@@ -68,7 +68,7 @@ function _wrapComponent(id) {
 
 require('./../styles/demo1.css');
 
-var texts = ['This is the liberator.', 'It liberates the component from captivity of its siblings.', 'It\'s the foundation for popups.'];
+var texts = ['This is Liberator.', 'It liberates components from captivity of their siblings.', 'It\'s the foundation for popups.'];
 
 var Demo1 = _wrapComponent('Demo1')(function (_Component) {
     _inherits(Demo1, _Component);

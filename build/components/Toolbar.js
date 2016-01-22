@@ -58,7 +58,7 @@ function _wrapComponent(id) {
     };
 }
 
-var texts = ['This is the Liberator.', 'It liberates the component from captivity of its siblings.', 'It\'s the foundation for popups.'];
+var texts = ['This is Liberator.', 'It liberates components from captivity of their siblings.', 'It\'s the foundation for popups.'];
 
 var Toolbar = _wrapComponent('Toolbar')(function (_Component) {
     _inherits(Toolbar, _Component);

@@ -66,7 +66,7 @@ function _wrapComponent(id) {
     };
 }
 
-require('./../styles/demo4.css');
+require('./../styles/demo3.css');
 
 var Demo3 = _wrapComponent('Demo3')(function (_Component) {
     _inherits(Demo3, _Component);

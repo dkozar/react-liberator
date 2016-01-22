@@ -68,7 +68,7 @@ function _wrapComponent(id) {
 
 require('./../styles/demo2.css');
 
-var texts = ['This is the liberator.', 'It liberates the component from captivity of its siblings.', 'It\'s a foundation for popups.'];
+var texts = ['This is Liberator.', 'It liberates components from captivity of their siblings.', 'It\'s a foundation for popups.'];
 
 var Demo2 = _wrapComponent('Demo2')(function (_Component) {
     _inherits(Demo2, _Component);
@@ -173,7 +173,7 @@ var Demo2 = _wrapComponent('Demo2')(function (_Component) {
                 null,
                 _react3.default.createElement(
                     _reactBootstrap.Alert,
-                    { bsStyle: 'info' },
+                    { bsStyle: 'success' },
                     _react3.default.createElement(
                         'h3',
                         null,
