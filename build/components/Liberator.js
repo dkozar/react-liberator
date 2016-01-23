@@ -130,7 +130,8 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
                 });
                 _reactDom2.default.unmountComponentAtNode(wrapperElement);
             }
-            if (layerElement && !layerElement.childNodes.length) {
+            if (layerElement && !layerElement.childNodes.length && (this.props.autoCleanup || this.props.layerId === DEFAULT_LIBERATOR_LAYER_ID)) {
+                // removing the default layer automatically
                 // if no active popups, removing the layer altogether
                 document.body.removeChild(layerElement);
                 this.setState({
@@ -202,10 +203,12 @@ exports.default = Liberator;
 Liberator.propTypes = {
     active: _react3.default.PropTypes.bool,
     visible: _react3.default.PropTypes.bool,
-    layerId: _react3.default.PropTypes.string
+    layerId: _react3.default.PropTypes.string,
+    autoCleanup: _react3.default.PropTypes.bool
 };
 Liberator.defaultProps = {
     active: true, // popping up by default
     visible: true, // visible by default
-    layerId: DEFAULT_LIBERATOR_LAYER_ID // the ID of the element to render the popup to
+    layerId: DEFAULT_LIBERATOR_LAYER_ID, // the ID of the element to render the popup to,
+    autoCleanup: false // automatically destroying the layer when having no child elements
 };
