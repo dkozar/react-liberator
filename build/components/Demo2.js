@@ -115,6 +115,8 @@ var Demo2 = _wrapComponent('Demo2')(function (_Component) {
         key: 'render',
         value: function render() {
             var visible = this.state.visible,
+                buttonIcon = visible ? _react3.default.createElement('span', { className: 'glyphicon glyphicon-star' }) : _react3.default.createElement('span', { className: 'glyphicon glyphicon-star-empty' }),
+                buttonText = visible ? 'Hide popup' : 'Show popup',
                 popup = visible ? _react3.default.createElement(
                 _Liberator2.default,
                 null,
@@ -197,12 +199,13 @@ var Demo2 = _wrapComponent('Demo2')(function (_Component) {
                 _react3.default.createElement(
                     'div',
                     null,
-                    _react3.default.createElement(_Toolbar2.default, {
-                        visible: this.state.visible,
-                        selectedIndex: this.state.selectedIndex,
-                        text: this.state.text,
-                        onVisibilityChange: this.onVisibilityChange,
-                        onTextChange: this.onTextChange }),
+                    _react3.default.createElement(
+                        _reactBootstrap.Button,
+                        { bsStyle: 'primary', bsSize: 'large', onClick: this.onVisibilityChange },
+                        buttonIcon,
+                        ' ',
+                        buttonText
+                    ),
                     popup
                 )
             );

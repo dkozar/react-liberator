@@ -38,11 +38,11 @@ export default class Demo3 extends Component {
             buttonIcon = active ?
                 <span className="glyphicon glyphicon-star"></span> :
                 <span className="glyphicon glyphicon-star-empty"></span>,
-            buttonText = active ? 'Show normal' : 'Show in popup',
+            buttonText = active ? 'Active: true' : 'Active: false',
             buttonIcon2 = visible ?
                 <span className="glyphicon glyphicon-star"></span> :
                 <span className="glyphicon glyphicon-star-empty"></span>,
-            buttonText2 = visible ? 'Set visibility to false' : 'Set visibility to true';
+            buttonText2 = visible ? 'Visible: true' : 'Visible: false';
 
         className += active ? 'green' : 'red';
 

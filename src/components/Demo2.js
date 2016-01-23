@@ -47,6 +47,10 @@ export default class Demo2 extends Component {
 
     render() {
         var visible = this.state.visible,
+            buttonIcon = visible ?
+                <span className="glyphicon glyphicon-star"></span> :
+                <span className="glyphicon glyphicon-star-empty"></span>,
+            buttonText = visible ? 'Hide popup' : 'Show popup',
             popup = visible ? (
                 <Liberator>
                     <div className="static-modal modal-backdrop fade in"></div>
@@ -92,12 +96,7 @@ export default class Demo2 extends Component {
                     Then change text to see that popup internals work.<br/><br/>
                 </Alert>
                 <div>
-                    <Toolbar
-                        visible={this.state.visible}
-                        selectedIndex={this.state.selectedIndex}
-                        text={this.state.text}
-                        onVisibilityChange={this.onVisibilityChange}
-                        onTextChange={this.onTextChange} />
+                    <Button bsStyle="primary" bsSize="large" onClick={this.onVisibilityChange}>{buttonIcon}&nbsp;{buttonText}</Button>
                     {popup}
                 </div>
             </div>

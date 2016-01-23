@@ -183,7 +183,7 @@ var Demo5 = _wrapComponent('Demo5')(function (_Component) {
             ) : null,
                 popup = _react3.default.createElement(
                 _reactBootstrap.Panel,
-                { bsStyle: 'primary', className: 'indent-top', header: panelTitle },
+                { bsStyle: 'primary', className: 'indent-top', header: this.props.params.title || panelTitle },
                 alert,
                 _react3.default.createElement(
                     _reactBootstrap.Button,
@@ -194,7 +194,7 @@ var Demo5 = _wrapComponent('Demo5')(function (_Component) {
                 ),
                 _react3.default.createElement('br', null),
                 _react3.default.createElement('br', null),
-                text
+                this.props.params.text || text
             );
 
             return _react3.default.createElement(

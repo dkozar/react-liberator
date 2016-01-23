@@ -1,6 +1,6 @@
 {
   "name": "react-liberator",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Liberates React components from the captivity of their siblings",
   "main": "index.js",
   "scripts": {
@@ -57,7 +57,10 @@
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "fullscreen": "^1.0.2",
+    "history": "^1.17.0",
+    "lodash": "^4.0.0",
     "react-bootstrap": "^0.28.2",
+    "react-router": "^1.0.3",
     "rimraf": "^2.4.3",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",

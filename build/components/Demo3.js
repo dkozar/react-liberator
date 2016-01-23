@@ -107,9 +107,9 @@ var Demo3 = _wrapComponent('Demo3')(function (_Component) {
                 visible = this.state.visible,
                 className = 'popup ',
                 buttonIcon = active ? _react3.default.createElement('span', { className: 'glyphicon glyphicon-star' }) : _react3.default.createElement('span', { className: 'glyphicon glyphicon-star-empty' }),
-                buttonText = active ? 'Show normal' : 'Show in popup',
+                buttonText = active ? 'Active: true' : 'Active: false',
                 buttonIcon2 = visible ? _react3.default.createElement('span', { className: 'glyphicon glyphicon-star' }) : _react3.default.createElement('span', { className: 'glyphicon glyphicon-star-empty' }),
-                buttonText2 = visible ? 'Set visibility to false' : 'Set visibility to true';
+                buttonText2 = visible ? 'Visible: true' : 'Visible: false';
 
             className += active ? 'green' : 'red';
 
