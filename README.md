@@ -6,7 +6,7 @@
 
 Enables React component to render its DOM away from its siblings.
 
-This is foundation for building a proper windowing system.
+This is the foundation for building a proper windowing system.
 
 ![Liberator!](http://dankokozar.com/images/react-liberator-1.png)
 
@@ -114,26 +114,27 @@ For more info on React hot-loader, take a look into [this fantastic video](https
 ```bash
 npm run demo
 ```
-This should build the *demo* folder. This is how the [demo](http://dkozar.github.io/react-liberator/) is built.
+This should build the *demo* folder (it's how the [demo](http://dkozar.github.io/react-liberator/) is built).
 
 ### :helicopter: Run the non-minified demo build
 
 ```bash
 npm run debug
 ```
-This should build the *demo* folder. Non-minified for easier debugging.
+This should build the *demo* folder, non-minified for easier debugging.
 
-You could install the http-server for running the demo builds:
+You could install the http-server for running the demo builds in the browser:
 
 ```bash
 npm install http-server
 http-server
 ```
 
-## Thanks to:
+## :thumbsup: Thanks to:
 
-:rocket: [React Transform Boilerplate](https://github.com/gaearon/react-transform-boilerplate) for workflow.
+:rocket: [React Transform Boilerplate](https://github.com/gaearon/react-transform-boilerplate) for the workflow.
 
+## :camera: Screenshots:
 
 ![Liberator!](http://dankokozar.com/images/react-liberator-2.png)
 
