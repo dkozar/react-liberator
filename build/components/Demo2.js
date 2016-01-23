@@ -190,7 +190,9 @@ var Demo2 = _wrapComponent('Demo2')(function (_Component) {
                     'It should be displayed in an overlay.',
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
-                    'Then change text to see the popup change.'
+                    'Then change text to see that popup internals work.',
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement('br', null)
                 ),
                 _react3.default.createElement(
                     'div',

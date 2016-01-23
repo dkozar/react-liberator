@@ -11,10 +11,12 @@ export default class Demo3 extends Component {
         super(props);
 
         this.state = {
-            active: false
+            active: false,
+            visible: true
         };
 
         this.onButtonClick = this.onButtonClick.bind(this);
+        this.changeVisibility = this.changeVisibility.bind(this);
     }
 
     onButtonClick() {
@@ -23,13 +25,24 @@ export default class Demo3 extends Component {
         });
     }
 
+    changeVisibility() {
+        this.setState({
+            visible: !this.state.visible
+        });
+    }
+
     render() {
         var active = this.state.active,
+            visible = this.state.visible,
             className = 'popup ',
             buttonIcon = active ?
                 <span className="glyphicon glyphicon-star"></span> :
                 <span className="glyphicon glyphicon-star-empty"></span>,
-            buttonText = active ? 'Show normal' : 'Show in popup';
+            buttonText = active ? 'Show normal' : 'Show in popup',
+            buttonIcon2 = visible ?
+                <span className="glyphicon glyphicon-star"></span> :
+                <span className="glyphicon glyphicon-star-empty"></span>,
+            buttonText2 = visible ? 'Set visibility to false' : 'Set visibility to true';
 
         className += active ? 'green' : 'red';
 
@@ -37,17 +50,19 @@ export default class Demo3 extends Component {
             <div>
                 <Alert bsStyle="info">
                     <h3>Demo 3 - Activate / deactivate</h3><br/>
-                    <strong>The element could be always wrapped into Liberator.</strong><br/><br/>
-                    Using the "active" switch we could render it in popup.<br/><br/>
-                    Check the HTML in the console.
+                    <strong>The element could be permanently wrapped into Liberator.</strong><br/><br/>
+                    Setting the <b>active</b> switch to <i>true</i> renders it in a popup.<br/><br/>
+                    Setting the <b>active</b> switch to <i>false</i> renders it as a child.<br/><br/>
+                    Setting the <b>visible</b> switch to <i>false</i> hides it altogether.<br/><br/>
+                    Check out the HTML in the inspector.<br/><br/>
                 </Alert>
 
                 <Button bsStyle="primary" bsSize="large" onClick={this.onButtonClick}>{buttonIcon}&nbsp;{buttonText}</Button>
+                <Button bsSize="large" className="indent-left" onClick={this.changeVisibility}>{buttonIcon2}&nbsp;{buttonText2}</Button>
 
-                <Liberator active={active}>
+                <Liberator active={active} visible={visible}>
                     <div className={className}>{active ? 'In popup' : 'Normal'}</div>
                 </Liberator>
-
             </div>
         );
     }

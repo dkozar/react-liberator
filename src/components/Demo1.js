@@ -51,9 +51,9 @@ export default class Demo1 extends Component {
                 <Alert bsStyle="info">
                     <h3>Demo 1 - Liberate!</h3><br/>
                     <strong>Open the popup.</strong><br/><br/>
-                    It should be displayed in the bottom-right corner.<br/><br/>
+                    It will be displayed in the bottom-right corner.<br/><br/>
                     Then change text to see the popup change.<br/><br/>
-                    Also check the HTML in the console.
+                    Also check the HTML in browser inspector.<br/><br/>
                 </Alert>
                 <Toolbar
                     visible={visible}

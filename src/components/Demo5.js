@@ -14,6 +14,7 @@ export default class Demo5 extends Component {
         this.state = {
             fullScreen: false,
             fullScreenRequest: false,
+            fullScreenError: false,
             text: 'This is Liberator.'
         };
 
@@ -52,7 +53,8 @@ export default class Demo5 extends Component {
 
     onFullScreenError(error) {
         this.setState({
-            fullScreen: false
+            fullScreen: false,
+            fullScreenError: true
         });
         console.log('Full screen isn\'t supported by this browser', error);
     }
@@ -70,6 +72,7 @@ export default class Demo5 extends Component {
 
     render() {
         var fullScreen = this.state.fullScreen,
+            isError = this.state.fullScreenError,
             buttonIcon = fullScreen ?
                 <span className="glyphicon glyphicon-star"></span> :
                 <span className="glyphicon glyphicon-star-empty"></span>,
@@ -85,8 +88,15 @@ export default class Demo5 extends Component {
                 </div>
             ),
 
+            alert = isError ? (
+                <Alert bsStyle="danger">
+                    <strong>Error: </strong>This platform doesn't support full screen.
+                </Alert>
+            ) : null,
+
             popup = (
                 <Panel bsStyle="primary" className="indent-top" header={panelTitle}>
+                    {alert}
                     <Button bsStyle="primary" bsSize="large" onClick={this.onButtonClick}>{buttonIcon}&nbsp;{buttonText}</Button><br/><br/>
                     {text}
                 </Panel>

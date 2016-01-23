@@ -149,7 +149,7 @@ var Demo4 = _wrapComponent('Demo4')(function (_Component) {
                     _react3.default.createElement(
                         'strong',
                         null,
-                        'Click the button to show panel maximized.'
+                        'Click the button to show the panel maximized.'
                     ),
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),

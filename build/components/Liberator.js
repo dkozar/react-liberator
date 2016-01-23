@@ -72,7 +72,7 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
 
         _this.state = {
             layerElement: null,
-            parentElement: null
+            wrapperElement: null
         };
         return _this;
     }
@@ -80,9 +80,9 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
     _createClass(Liberator, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
-            if (this.props.active) {
+            if (this.props.active && this.props.visible) {
                 this.activate();
-                this.doRender(this.props.children);
+                this.renderInPopup(this.props.children);
             }
         }
     }, {
@@ -95,9 +95,11 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
         value: function activate() {
             var layerId = this.props.layerId,
                 layerElement = document.getElementById(layerId),
-                parentElement;
+                // layer lookup
+            wrapperElement;
 
             if (!layerElement) {
+                // if we haven't found the predefined div, we're creating it on the fly
                 layerElement = document.createElement('div');
                 layerElement.setAttribute("id", layerId);
                 document.body.appendChild(layerElement);
@@ -105,38 +107,56 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
 
             this.state.layerElement = layerElement;
 
-            parentElement = document.createElement('div');
-            parentElement.className = this.props.className || '';
-            this.state.parentElement = parentElement;
+            // we're creating the wrapper element on the fly
+            // we're rendering the component into this element when active
+            wrapperElement = document.createElement('div');
+            wrapperElement.className = this.props.className || '';
+            this.state.wrapperElement = wrapperElement;
 
-            layerElement.appendChild(parentElement);
+            layerElement.appendChild(wrapperElement);
         }
     }, {
         key: 'deactivate',
         value: function deactivate() {
-            if (this.state.parentElement) {
-                if (this.state.layerElement) {
-                    this.state.layerElement.removeChild(this.state.parentElement);
+            var wrapperElement = this.state.wrapperElement,
+                layerElement = this.state.layerElement;
+
+            if (wrapperElement) {
+                if (layerElement) {
+                    layerElement.removeChild(wrapperElement);
                 }
+                this.setState({
+                    wrapperElement: null
+                });
+                _reactDom2.default.unmountComponentAtNode(wrapperElement);
+            }
+            if (layerElement && !layerElement.childNodes.length) {
+                // if no active popups, removing the layer altogether
+                document.body.removeChild(layerElement);
                 this.setState({
                     layerElement: null
                 });
-                _reactDom2.default.unmountComponentAtNode(this.state.parentElement);
             }
         }
     }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(newProps) {
-            if (newProps.active !== this.props.active) {
-                if (newProps.active) {
+            var changedActiveState = newProps.active !== this.props.active,
+                changedVisibility = newProps.visible !== this.props.visible,
+                isNowActive = newProps.active,
+                isNowVisible = newProps.visible,
+                shouldRenderInPopup = isNowActive && isNowVisible;
+
+            if (changedActiveState || changedVisibility) {
+                if (shouldRenderInPopup) {
                     this.activate();
                 } else {
                     this.deactivate();
                 }
             }
 
-            if (newProps.active) {
-                return this.doRender(newProps.children);
+            if (shouldRenderInPopup) {
+                return this.renderInPopup(newProps.children);
             } else {
                 return null;
             }
@@ -144,7 +164,7 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            if (this.props.active) {
+            if (this.props.active || !this.props.visible) {
                 return null; // short circuit here
             } else {
                     return this.wrapChildren(this.props.children);
@@ -168,9 +188,9 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
             return children;
         }
     }, {
-        key: 'doRender',
-        value: function doRender(children) {
-            return (0, _reactDom.render)(this.wrapChildren(children), this.state.parentElement);
+        key: 'renderInPopup',
+        value: function renderInPopup(children) {
+            return (0, _reactDom.render)(this.wrapChildren(children), this.state.wrapperElement);
         }
     }]);
 
@@ -180,10 +200,12 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
 exports.default = Liberator;
 
 Liberator.propTypes = {
-    layerId: _react3.default.PropTypes.string,
-    detach: _react3.default.PropTypes.bool
+    active: _react3.default.PropTypes.bool,
+    visible: _react3.default.PropTypes.bool,
+    layerId: _react3.default.PropTypes.string
 };
 Liberator.defaultProps = {
-    layerId: DEFAULT_LIBERATOR_LAYER_ID,
-    active: true
+    active: true, // popping up by default
+    visible: true, // visible by default
+    layerId: DEFAULT_LIBERATOR_LAYER_ID // the ID of the element to render the popup to
 };

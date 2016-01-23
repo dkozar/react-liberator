@@ -10,14 +10,14 @@ export default class Liberator extends Component {
         super(props);
         this.state = {
             layerElement: null,
-            parentElement: null
+            wrapperElement: null
         };
     }
 
     componentWillMount() {
-        if (this.props.active) {
+        if (this.props.active && this.props.visible) {
             this.activate();
-            this.doRender(this.props.children);
+            this.renderInPopup(this.props.children);
         }
     }
 
@@ -27,10 +27,11 @@ export default class Liberator extends Component {
 
     activate() {
         var layerId = this.props.layerId,
-            layerElement = document.getElementById(layerId),
-            parentElement;
+            layerElement = document.getElementById(layerId), // layer lookup
+            wrapperElement;
 
         if (!layerElement) {
+            // if we haven't found the predefined div, we're creating it on the fly
             layerElement = document.createElement('div');
             layerElement.setAttribute("id", layerId);
             document.body.appendChild(layerElement);
@@ -38,44 +39,61 @@ export default class Liberator extends Component {
 
         this.state.layerElement = layerElement;
 
-        parentElement = document.createElement('div');
-        parentElement.className = this.props.className || '';
-        this.state.parentElement = parentElement;
+        // we're creating the wrapper element on the fly
+        // we're rendering the component into this element when active
+        wrapperElement = document.createElement('div');
+        wrapperElement.className = this.props.className || '';
+        this.state.wrapperElement = wrapperElement;
 
-        layerElement.appendChild(parentElement);
+        layerElement.appendChild(wrapperElement);
     }
 
     deactivate() {
-        if (this.state.parentElement) {
-            if (this.state.layerElement) {
-                this.state.layerElement.removeChild(this.state.parentElement);
+        var wrapperElement = this.state.wrapperElement,
+            layerElement = this.state.layerElement;
+
+        if (wrapperElement) {
+            if (layerElement) {
+                layerElement.removeChild(wrapperElement);
             }
+            this.setState({
+                wrapperElement: null
+            });
+            ReactDOM.unmountComponentAtNode(wrapperElement);
+        }
+        if (layerElement && !layerElement.childNodes.length) {
+            // if no active popups, removing the layer altogether
+            document.body.removeChild(layerElement);
             this.setState({
                 layerElement: null
             });
-            ReactDOM.unmountComponentAtNode(this.state.parentElement);
         }
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.active !== this.props.active) {
-            if (newProps.active) {
+        var changedActiveState = newProps.active !== this.props.active,
+            changedVisibility = newProps.visible !== this.props.visible,
+            isNowActive = newProps.active,
+            isNowVisible = newProps.visible,
+            shouldRenderInPopup = isNowActive && isNowVisible;
+
+        if (changedActiveState || changedVisibility) {
+            if (shouldRenderInPopup) {
                 this.activate();
             } else {
                 this.deactivate();
             }
         }
 
-        if (newProps.active) {
-            return this.doRender(newProps.children);
+        if (shouldRenderInPopup) {
+            return this.renderInPopup(newProps.children);
         } else {
             return null;
         }
-
     }
 
     render() {
-        if (this.props.active) {
+        if (this.props.active || !this.props.visible) {
             return null; // short circuit here
         } else {
             return this.wrapChildren(this.props.children);
@@ -96,15 +114,17 @@ export default class Liberator extends Component {
         return children;
     }
 
-    doRender(children) {
-        return render(this.wrapChildren(children), this.state.parentElement);
+    renderInPopup(children) {
+        return render(this.wrapChildren(children), this.state.wrapperElement);
     }
 }
 Liberator.propTypes = {
-    layerId: React.PropTypes.string,
-    detach: React.PropTypes.bool
+    active: React.PropTypes.bool,
+    visible: React.PropTypes.bool,
+    layerId: React.PropTypes.string
 };
 Liberator.defaultProps = {
-    layerId: DEFAULT_LIBERATOR_LAYER_ID,
-    active: true
+    active: true, // popping up by default
+    visible: true, // visible by default
+    layerId: DEFAULT_LIBERATOR_LAYER_ID // the ID of the element to render the popup to
 };

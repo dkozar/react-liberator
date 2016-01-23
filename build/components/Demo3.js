@@ -77,10 +77,12 @@ var Demo3 = _wrapComponent('Demo3')(function (_Component) {
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Demo3).call(this, props));
 
         _this.state = {
-            active: false
+            active: false,
+            visible: true
         };
 
         _this.onButtonClick = _this.onButtonClick.bind(_this);
+        _this.changeVisibility = _this.changeVisibility.bind(_this);
         return _this;
     }
 
@@ -92,12 +94,22 @@ var Demo3 = _wrapComponent('Demo3')(function (_Component) {
             });
         }
     }, {
+        key: 'changeVisibility',
+        value: function changeVisibility() {
+            this.setState({
+                visible: !this.state.visible
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var active = this.state.active,
+                visible = this.state.visible,
                 className = 'popup ',
                 buttonIcon = active ? _react3.default.createElement('span', { className: 'glyphicon glyphicon-star' }) : _react3.default.createElement('span', { className: 'glyphicon glyphicon-star-empty' }),
-                buttonText = active ? 'Show normal' : 'Show in popup';
+                buttonText = active ? 'Show normal' : 'Show in popup',
+                buttonIcon2 = visible ? _react3.default.createElement('span', { className: 'glyphicon glyphicon-star' }) : _react3.default.createElement('span', { className: 'glyphicon glyphicon-star-empty' }),
+                buttonText2 = visible ? 'Set visibility to false' : 'Set visibility to true';
 
             className += active ? 'green' : 'red';
 
@@ -116,14 +128,58 @@ var Demo3 = _wrapComponent('Demo3')(function (_Component) {
                     _react3.default.createElement(
                         'strong',
                         null,
-                        'The element could be always wrapped into Liberator.'
+                        'The element could be permanently wrapped into Liberator.'
                     ),
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
-                    'Using the "active" switch we could render it in popup.',
+                    'Setting the ',
+                    _react3.default.createElement(
+                        'b',
+                        null,
+                        'active'
+                    ),
+                    ' switch to ',
+                    _react3.default.createElement(
+                        'i',
+                        null,
+                        'true'
+                    ),
+                    ' renders it in a popup.',
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
-                    'Check the HTML in the console.'
+                    'Setting the ',
+                    _react3.default.createElement(
+                        'b',
+                        null,
+                        'active'
+                    ),
+                    ' switch to ',
+                    _react3.default.createElement(
+                        'i',
+                        null,
+                        'false'
+                    ),
+                    ' renders it as a child.',
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement('br', null),
+                    'Setting the ',
+                    _react3.default.createElement(
+                        'b',
+                        null,
+                        'visible'
+                    ),
+                    ' switch to ',
+                    _react3.default.createElement(
+                        'i',
+                        null,
+                        'false'
+                    ),
+                    ' hides it altogether.',
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement('br', null),
+                    'Check out the HTML in the inspector.',
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement('br', null)
                 ),
                 _react3.default.createElement(
                     _reactBootstrap.Button,
@@ -133,8 +189,15 @@ var Demo3 = _wrapComponent('Demo3')(function (_Component) {
                     buttonText
                 ),
                 _react3.default.createElement(
+                    _reactBootstrap.Button,
+                    { bsSize: 'large', className: 'indent-left', onClick: this.changeVisibility },
+                    buttonIcon2,
+                    ' ',
+                    buttonText2
+                ),
+                _react3.default.createElement(
                     _Liberator2.default,
-                    { active: active },
+                    { active: active, visible: visible },
                     _react3.default.createElement(
                         'div',
                         { className: className },

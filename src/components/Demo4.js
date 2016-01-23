@@ -54,7 +54,9 @@ export default class Demo4 extends Component {
             <div>
                 <Alert bsStyle="success">
                     <h3>Demo 4 - Maximized popup</h3><br/>
-                    <strong>Click the button to show panel maximized.</strong><br/><br/>It should be displayed in an overlay.<br/><br/>Panel is being maximized using styles (see demo4.css).<br/><br/>
+                    <strong>Click the button to show the panel maximized.</strong><br/><br/>
+                    It should be displayed in an overlay.<br/><br/>
+                    Panel is being maximized using styles (see demo4.css).<br/><br/>
                 </Alert>
                 <Liberator className="full-screen"
                     active={maximized}>

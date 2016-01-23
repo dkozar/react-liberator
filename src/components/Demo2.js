@@ -89,7 +89,7 @@ export default class Demo2 extends Component {
                     <h3>Demo 2 - Popup</h3><br/>
                     <strong>Open the popup.</strong><br/><br/>
                     It should be displayed in an overlay.<br/><br/>
-                    Then change text to see the popup change.
+                    Then change text to see that popup internals work.<br/><br/>
                 </Alert>
                 <div>
                     <Toolbar
@@ -98,9 +98,7 @@ export default class Demo2 extends Component {
                         text={this.state.text}
                         onVisibilityChange={this.onVisibilityChange}
                         onTextChange={this.onTextChange} />
-
                     {popup}
-
                 </div>
             </div>
         );

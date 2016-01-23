@@ -6,9 +6,11 @@
 
 Enables React component to render its DOM away from its siblings.
 
-This feature is the basis for building a proper windowing system (in any technology).
+This is foundation for building a proper windowing system.
 
 ![Liberator!](http://dankokozar.com/images/react-liberator-1.png)
+
+![Liberate!](http://dankokozar.com/images/react-liberator-popup.png)
 
 ## :tv: Demo
 
@@ -57,7 +59,7 @@ render(<App />, document.body);
 Or use it as a switch:
 
 ```js
-<Liberator active={active}>
+<Liberator active={this.state.active}>
     <div>Popup</div>
 </Liberator>
 ```
@@ -65,9 +67,11 @@ Or use it as a switch:
 Or render it to a predefined div:
 
 ```js
-<Liberator layerId={layerId}>
+<Liberator layerId="foo">
     <div>Popup</div>
 </Liberator>
+
+<div id="foo"></div>
 ```
 
 ## :truck: Installation

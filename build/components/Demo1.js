@@ -136,13 +136,15 @@ var Demo1 = _wrapComponent('Demo1')(function (_Component) {
                     ),
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
-                    'It should be displayed in the bottom-right corner.',
+                    'It will be displayed in the bottom-right corner.',
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
                     'Then change text to see the popup change.',
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
-                    'Also check the HTML in the console.'
+                    'Also check the HTML in browser inspector.',
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement('br', null)
                 ),
                 _react3.default.createElement(_Toolbar2.default, {
                     visible: visible,

@@ -81,6 +81,7 @@ var Demo5 = _wrapComponent('Demo5')(function (_Component) {
         _this.state = {
             fullScreen: false,
             fullScreenRequest: false,
+            fullScreenError: false,
             text: 'This is Liberator.'
         };
 
@@ -128,7 +129,8 @@ var Demo5 = _wrapComponent('Demo5')(function (_Component) {
         key: 'onFullScreenError',
         value: function onFullScreenError(error) {
             this.setState({
-                fullScreen: false
+                fullScreen: false,
+                fullScreenError: true
             });
             console.log('Full screen isn\'t supported by this browser', error);
         }
@@ -149,6 +151,7 @@ var Demo5 = _wrapComponent('Demo5')(function (_Component) {
         key: 'render',
         value: function render() {
             var fullScreen = this.state.fullScreen,
+                isError = this.state.fullScreenError,
                 buttonIcon = fullScreen ? _react3.default.createElement('span', { className: 'glyphicon glyphicon-star' }) : _react3.default.createElement('span', { className: 'glyphicon glyphicon-star-empty' }),
                 buttonText = fullScreen ? 'Exit full screen' : 'Show full screen',
                 panelTitle = fullScreen ? 'This is the panel in full screen mode' : 'This is the panel',
@@ -168,9 +171,20 @@ var Demo5 = _wrapComponent('Demo5')(function (_Component) {
                 _react3.default.createElement('br', null),
                 _react3.default.createElement('br', null)
             ),
+                alert = isError ? _react3.default.createElement(
+                _reactBootstrap.Alert,
+                { bsStyle: 'danger' },
+                _react3.default.createElement(
+                    'strong',
+                    null,
+                    'Error: '
+                ),
+                'This platform doesn\'t support full screen.'
+            ) : null,
                 popup = _react3.default.createElement(
                 _reactBootstrap.Panel,
                 { bsStyle: 'primary', className: 'indent-top', header: panelTitle },
+                alert,
                 _react3.default.createElement(
                     _reactBootstrap.Button,
                     { bsStyle: 'primary', bsSize: 'large', onClick: this.onButtonClick },
