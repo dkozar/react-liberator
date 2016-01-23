@@ -16,11 +16,11 @@ This is the foundation for building a proper windowing system.
 
 http://dkozar.github.io/react-liberator/
 
-* Demo 1 - Liberate!
-* Demo 2 - Popup
-* Demo 3 - Activate / deactivate
-* Demo 4 - Maximized popup
-* Demo 5 - Full screen sync
+* [Demo 1 - Liberate!](http://dkozar.github.io/react-liberator/#/demo1)
+* [Demo 2 - Popup](http://dkozar.github.io/react-liberator/#/demo2)
+* [Demo 3 - Activate / deactivate](http://dkozar.github.io/react-liberator/#/demo3)
+* [Demo 4 - Maximized popup](http://dkozar.github.io/react-liberator/#/demo4)
+* [Demo 5 - Full screen sync](http://dkozar.github.io/react-liberator/#/demo5)
 
 ## :zap: Usage
 
