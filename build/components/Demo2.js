@@ -24,6 +24,10 @@ var _SourceLink = require('./SourceLink');
 
 var _SourceLink2 = _interopRequireDefault(_SourceLink);
 
+var _reactWrappyText = require('react-wrappy-text');
+
+var _reactWrappyText2 = _interopRequireDefault(_reactWrappyText);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -145,7 +149,11 @@ var Demo2 = function (_Component) {
                     _react2.default.createElement(
                         'h3',
                         null,
-                        'Demo 2 - Popup'
+                        _react2.default.createElement(
+                            _reactWrappyText2.default,
+                            null,
+                            'Demo 2 - Popup'
+                        )
                     ),
                     _react2.default.createElement('br', null),
                     _react2.default.createElement(

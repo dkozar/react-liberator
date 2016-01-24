@@ -3,6 +3,7 @@ import { Alert, Button, Panel } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
 import SourceLink from './SourceLink';
+import ReactWrappyText from 'react-wrappy-text';
 
 require('./../styles/demo4.css');
 
@@ -53,7 +54,7 @@ export default class Demo4 extends Component {
         return (
             <div>
                 <Alert bsStyle="success">
-                    <h3>Demo 4 - Maximized popup</h3><br/>
+                    <h3><ReactWrappyText>Demo 4 - Maximized popup</ReactWrappyText></h3><br/>
                     <strong>Click the button to show the panel maximized.</strong><br/><br/>
                     It should be displayed in an overlay.<br/><br/>
                     Panel is being maximized using styles (see demo4.css).<br/><br/>

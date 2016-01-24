@@ -3,6 +3,7 @@ import { Alert, Button, Modal } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
 import SourceLink from './SourceLink';
+import ReactWrappyText from 'react-wrappy-text';
 
 require('./../styles/demo2.css');
 
@@ -91,7 +92,7 @@ export default class Demo2 extends Component {
         return (
             <div>
                 <Alert bsStyle="success">
-                    <h3>Demo 2 - Popup</h3><br/>
+                    <h3><ReactWrappyText>Demo 2 - Popup</ReactWrappyText></h3><br/>
                     <strong>Open the popup.</strong><br/><br/>
                     It should be displayed in an overlay.<br/><br/>
                     Then change text to see that popup internals work.<br/><br/>

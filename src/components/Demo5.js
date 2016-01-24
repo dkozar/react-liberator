@@ -3,6 +3,7 @@ import { Alert, Button, Panel } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
 import SourceLink from './SourceLink';
+import ReactWrappyText from 'react-wrappy-text';
 var fullscreen = require('fullscreen');
 
 require('./../styles/demo5.css');
@@ -106,7 +107,7 @@ export default class Demo5 extends Component {
         return (
             <div>
                 <Alert bsStyle="info">
-                    <h3>Demo 5 - Full screen sync</h3><br/>
+                    <h3><ReactWrappyText>Demo 5 - Full screen sync</ReactWrappyText></h3><br/>
                     <strong>Click the button to show panel in full screen.</strong><br/><br/>
                     It should be displayed in an overlay.<br/><br/>
                     Its size is kept in sync with a full screen state (maximized when in full screen mode).<br/><br/>

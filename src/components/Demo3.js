@@ -3,6 +3,7 @@ import { Alert, Button } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
 import SourceLink from './SourceLink';
+import ReactWrappyText from 'react-wrappy-text';
 
 require('./../styles/demo3.css');
 
@@ -50,7 +51,7 @@ export default class Demo3 extends Component {
         return (
             <div>
                 <Alert bsStyle="info">
-                    <h3>Demo 3 - Activate / deactivate</h3><br/>
+                    <h3><ReactWrappyText>Demo 3 - Activate / deactivate</ReactWrappyText></h3><br/>
                     <strong>The element could be permanently wrapped into Liberator.</strong><br/><br/>
                     Setting the <b>active</b> switch to <i>true</i> renders it in a popup.<br/><br/>
                     Setting the <b>active</b> switch to <i>false</i> renders it as a child.<br/><br/>
