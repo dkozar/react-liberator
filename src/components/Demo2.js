@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert, Button, Modal } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
+import SourceLink from './SourceLink';
 
 require('./../styles/demo2.css');
 
@@ -94,6 +95,7 @@ export default class Demo2 extends Component {
                     <strong>Open the popup.</strong><br/><br/>
                     It should be displayed in an overlay.<br/><br/>
                     Then change text to see that popup internals work.<br/><br/>
+                    <SourceLink>Demo2.js</SourceLink><br/><br/>
                 </Alert>
                 <div>
                     <Button bsStyle="primary" bsSize="large" onClick={this.onVisibilityChange}>{buttonIcon}&nbsp;{buttonText}</Button>

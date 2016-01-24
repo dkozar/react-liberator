@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert, Button } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
+import SourceLink from './SourceLink';
 
 require('./../styles/demo1.css');
 
@@ -54,6 +55,7 @@ export default class Demo1 extends Component {
                     It will be displayed in the bottom-right corner.<br/><br/>
                     Then change text to see the popup change.<br/><br/>
                     Also check the HTML in browser inspector.<br/><br/>
+                    <SourceLink>Demo1.js</SourceLink><br/><br/>
                 </Alert>
                 <Toolbar
                     visible={visible}

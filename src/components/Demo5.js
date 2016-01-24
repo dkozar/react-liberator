@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Alert, Button, Panel } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
-var fullscreen = require('fullscreen')
+import SourceLink from './SourceLink';
+var fullscreen = require('fullscreen');
 
 require('./../styles/demo5.css');
 
@@ -90,7 +91,7 @@ export default class Demo5 extends Component {
 
             alert = isError ? (
                 <Alert bsStyle="danger">
-                    <strong>Error: </strong>This platform doesn't support full screen.
+                    <strong>Error: </strong>This platform doesn&#39;t support full screen.
                 </Alert>
             ) : null,
 
@@ -109,6 +110,7 @@ export default class Demo5 extends Component {
                     <strong>Click the button to show panel in full screen.</strong>
                     <br/><br/>It should be displayed in an overlay.<br/><br/>
                     Its size is kept in sync with a full screen state (maximized when in full screen mode).<br/><br/>
+                    <SourceLink>Demo5.js</SourceLink><br/><br/>
                 </Alert>
                 <Liberator className="full-screen"
                     active={fullScreen}>

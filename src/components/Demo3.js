@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert, Button } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
+import SourceLink from './SourceLink';
 
 require('./../styles/demo3.css');
 
@@ -55,6 +56,7 @@ export default class Demo3 extends Component {
                     Setting the <b>active</b> switch to <i>false</i> renders it as a child.<br/><br/>
                     Setting the <b>visible</b> switch to <i>false</i> hides it altogether.<br/><br/>
                     Check out the HTML in the inspector.<br/><br/>
+                    <SourceLink>Demo3.js</SourceLink><br/><br/>
                 </Alert>
 
                 <Button bsStyle="primary" bsSize="large" onClick={this.onButtonClick}>{buttonIcon}&nbsp;{buttonText}</Button>

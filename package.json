@@ -1,6 +1,6 @@
 {
   "name": "react-liberator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Liberates React components from the captivity of their siblings",
   "main": "index.js",
   "scripts": {

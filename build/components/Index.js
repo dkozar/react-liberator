@@ -97,7 +97,7 @@ var Index = _wrapComponent('Index')(function (_Component) {
                         null,
                         'react-liberator'
                     ),
-                    ' is a plugin for ReactJS. It allows React components to render their DOM away from its siblings. ]'
+                    ' is a plugin for ReactJS. It allows React components to render their DOM away from their siblings. ]'
                 ),
                 _react3.default.createElement(
                     _reactBootstrap.ListGroup,

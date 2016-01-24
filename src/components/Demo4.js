@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Alert, Button, Panel } from 'react-bootstrap';
 import Toolbar from './Toolbar';
 import Liberator from './Liberator';
-var fullscreen = require('fullscreen')
+import SourceLink from './SourceLink';
 
 require('./../styles/demo4.css');
 
@@ -57,6 +57,7 @@ export default class Demo4 extends Component {
                     <strong>Click the button to show the panel maximized.</strong><br/><br/>
                     It should be displayed in an overlay.<br/><br/>
                     Panel is being maximized using styles (see demo4.css).<br/><br/>
+                    <SourceLink>Demo4.js</SourceLink><br/><br/>
                 </Alert>
                 <Liberator className="full-screen"
                     active={maximized}>

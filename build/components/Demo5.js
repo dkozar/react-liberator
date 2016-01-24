@@ -32,6 +32,10 @@ var _Liberator = require('./Liberator');
 
 var _Liberator2 = _interopRequireDefault(_Liberator);
 
+var _SourceLink = require('./SourceLink');
+
+var _SourceLink2 = _interopRequireDefault(_SourceLink);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -220,6 +224,13 @@ var Demo5 = _wrapComponent('Demo5')(function (_Component) {
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
                     'Its size is kept in sync with a full screen state (maximized when in full screen mode).',
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement(
+                        _SourceLink2.default,
+                        null,
+                        'Demo5.js'
+                    ),
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null)
                 ),

@@ -32,6 +32,10 @@ var _Liberator = require('./Liberator');
 
 var _Liberator2 = _interopRequireDefault(_Liberator);
 
+var _SourceLink = require('./SourceLink');
+
+var _SourceLink2 = _interopRequireDefault(_SourceLink);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65,8 +69,6 @@ function _wrapComponent(id) {
         return _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformHmrLibIndexJs2(_workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
     };
 }
-
-var fullscreen = require('fullscreen');
 
 require('./../styles/demo4.css');
 
@@ -157,6 +159,13 @@ var Demo4 = _wrapComponent('Demo4')(function (_Component) {
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null),
                     'Panel is being maximized using styles (see demo4.css).',
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement('br', null),
+                    _react3.default.createElement(
+                        _SourceLink2.default,
+                        null,
+                        'Demo4.js'
+                    ),
                     _react3.default.createElement('br', null),
                     _react3.default.createElement('br', null)
                 ),

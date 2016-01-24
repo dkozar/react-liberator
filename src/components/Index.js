@@ -12,7 +12,7 @@ export default class Index extends Component {
                 <h1>What's on the menu?</h1>
                 <blockquote>
                     Here are some Liberator demos.<br/><br/>
-                    [ <em>react-liberator</em> is a plugin for ReactJS. It allows React components to render their DOM away from its siblings. ]
+                    [ <em>react-liberator</em> is a plugin for ReactJS. It allows React components to render their DOM away from their siblings. ]
                 </blockquote>
                 <ListGroup>
                     {demos.map(demo => (
