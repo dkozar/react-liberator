@@ -1,6 +1,6 @@
 {
   "name": "react-liberator",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Liberates React components from the captivity of their siblings",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "dist": "rimraf dist && npm run dist:webpack",
     "babel": "NODE_ENV=production bash build.sh",
     "build": "rimraf build && npm run babel",
-    "full": "npm run build && npm run dist && npm run demo",
+    "all": "npm run build && npm run dist && npm run demo",
     "lint": "eslint src"
   },
   "repository": {

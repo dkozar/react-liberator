@@ -145,7 +145,7 @@ npm run dist
 Builds the webpackUniversalModuleDefinition and puts it into the *dist* folder.
 
 ```bash
-npm run full
+npm run all
 ```
 
 Runs all the builds: *build* + *dist* + *demo*.
