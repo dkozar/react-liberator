@@ -8,9 +8,9 @@ Enables React component to render its DOM away from its siblings.
 
 This is the foundation for building a proper windowing system.
 
-![Liberator!](http://dankokozar.com/images/react-liberator-1.png)
+[![Liberator!](http://dankokozar.com/images/react-liberator-1.png)](http://dkozar.github.io/react-liberator/)
 
-![Liberate!](http://dankokozar.com/images/react-liberator-popup.png)
+[![Liberator!](http://dankokozar.com/images/react-liberator-popup.png)](http://dkozar.github.io/react-liberator/)
 
 ## :tv: Demo
 
