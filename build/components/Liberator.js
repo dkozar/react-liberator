@@ -6,21 +6,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _index = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/redbox-react/lib/index.js');
+var _react = require('react');
 
-var _index2 = _interopRequireDefault(_index);
-
-var _index3 = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/react-transform-catch-errors/lib/index.js');
-
-var _index4 = _interopRequireDefault(_index3);
-
-var _react2 = require('react');
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index5 = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/react-transform-hmr/lib/index.js');
-
-var _index6 = _interopRequireDefault(_index5);
+var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
 
@@ -34,35 +22,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _components = {
-    Liberator: {
-        displayName: 'Liberator'
-    }
-};
-
-var _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-    filename: 'src/components/Liberator.js',
-    components: _components,
-    locals: [module],
-    imports: [_react3.default]
-});
-
-var _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-    filename: 'src/components/Liberator.js',
-    components: _components,
-    locals: [],
-    imports: [_react3.default, _index2.default]
-});
-
-function _wrapComponent(id) {
-    return function (Component) {
-        return _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformHmrLibIndexJs2(_workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
-    };
-}
-
 var DEFAULT_LIBERATOR_LAYER_ID = '___liberator___';
 
-var Liberator = _wrapComponent('Liberator')(function (_Component) {
+var Liberator = function (_Component) {
     _inherits(Liberator, _Component);
 
     function Liberator(props) {
@@ -179,7 +141,7 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
             }
 
             if (children.length > 1) {
-                return _react3.default.createElement(
+                return _react2.default.createElement(
                     'div',
                     null,
                     children
@@ -196,15 +158,15 @@ var Liberator = _wrapComponent('Liberator')(function (_Component) {
     }]);
 
     return Liberator;
-}(_react2.Component));
+}(_react.Component);
 
 exports.default = Liberator;
 
 Liberator.propTypes = {
-    active: _react3.default.PropTypes.bool,
-    visible: _react3.default.PropTypes.bool,
-    layerId: _react3.default.PropTypes.string,
-    autoCleanup: _react3.default.PropTypes.bool
+    active: _react2.default.PropTypes.bool,
+    visible: _react2.default.PropTypes.bool,
+    layerId: _react2.default.PropTypes.string,
+    autoCleanup: _react2.default.PropTypes.bool
 };
 Liberator.defaultProps = {
     active: true, // popping up by default

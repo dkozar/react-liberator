@@ -6,21 +6,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _index = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/redbox-react/lib/index.js');
+var _react = require('react');
 
-var _index2 = _interopRequireDefault(_index);
-
-var _index3 = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/react-transform-catch-errors/lib/index.js');
-
-var _index4 = _interopRequireDefault(_index3);
-
-var _react2 = require('react');
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index5 = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/react-transform-hmr/lib/index.js');
-
-var _index6 = _interopRequireDefault(_index5);
+var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30,36 +18,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _components = {
-    SourceLink: {
-        displayName: 'SourceLink'
-    }
-};
-
-var _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-    filename: 'src/components/SourceLink.js',
-    components: _components,
-    locals: [module],
-    imports: [_react3.default]
-});
-
-var _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-    filename: 'src/components/SourceLink.js',
-    components: _components,
-    locals: [],
-    imports: [_react3.default, _index2.default]
-});
-
-function _wrapComponent(id) {
-    return function (Component) {
-        return _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformHmrLibIndexJs2(_workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
-    };
-}
-
 //const SOURCE_FOLDER = 'src/components/';
 var SOURCE_FOLDER = 'https://github.com/dkozar/react-liberator/tree/master/src/components/';
 
-var SourceLink = _wrapComponent('SourceLink')(function (_Component) {
+var SourceLink = function (_Component) {
     _inherits(SourceLink, _Component);
 
     function SourceLink() {
@@ -71,7 +33,7 @@ var SourceLink = _wrapComponent('SourceLink')(function (_Component) {
     _createClass(SourceLink, [{
         key: 'render',
         value: function render() {
-            return _react3.default.createElement(
+            return _react2.default.createElement(
                 'a',
                 { href: SOURCE_FOLDER + this.props.children || '', target: '_blank' },
                 'Click here for the source'
@@ -80,6 +42,6 @@ var SourceLink = _wrapComponent('SourceLink')(function (_Component) {
     }]);
 
     return SourceLink;
-}(_react2.Component));
+}(_react.Component);
 
 exports.default = SourceLink;

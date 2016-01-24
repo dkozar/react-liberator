@@ -6,21 +6,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _index = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/redbox-react/lib/index.js');
+var _react = require('react');
 
-var _index2 = _interopRequireDefault(_index);
-
-var _index3 = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/react-transform-catch-errors/lib/index.js');
-
-var _index4 = _interopRequireDefault(_index3);
-
-var _react2 = require('react');
-
-var _react3 = _interopRequireDefault(_react2);
-
-var _index5 = require('/workspace/react-liberator/node_modules/babel-preset-react-hmre/node_modules/react-transform-hmr/lib/index.js');
-
-var _index6 = _interopRequireDefault(_index5);
+var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
@@ -36,35 +24,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _components = {
-    Index: {
-        displayName: 'Index'
-    }
-};
-
-var _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-    filename: 'src/components/Index.js',
-    components: _components,
-    locals: [module],
-    imports: [_react3.default]
-});
-
-var _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-    filename: 'src/components/Index.js',
-    components: _components,
-    locals: [],
-    imports: [_react3.default, _index2.default]
-});
-
-function _wrapComponent(id) {
-    return function (Component) {
-        return _workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformHmrLibIndexJs2(_workspaceReactLiberatorNode_modulesBabelPresetReactHmreNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
-    };
-}
-
 require('./../styles/main.css');
 
-var Index = _wrapComponent('Index')(function (_Component) {
+var Index = function (_Component) {
     _inherits(Index, _Component);
 
     function Index() {
@@ -76,34 +38,34 @@ var Index = _wrapComponent('Index')(function (_Component) {
     _createClass(Index, [{
         key: 'render',
         value: function render() {
-            return _react3.default.createElement(
+            return _react2.default.createElement(
                 'div',
                 null,
                 this.props.params[0],
-                _react3.default.createElement(
+                _react2.default.createElement(
                     'h1',
                     null,
                     'What\'s on the menu?'
                 ),
-                _react3.default.createElement(
+                _react2.default.createElement(
                     'blockquote',
                     null,
                     'Here are some Liberator demos.',
-                    _react3.default.createElement('br', null),
-                    _react3.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement('br', null),
                     '[ ',
-                    _react3.default.createElement(
+                    _react2.default.createElement(
                         'em',
                         null,
                         'react-liberator'
                     ),
                     ' is a plugin for ReactJS. It allows React components to render their DOM away from their siblings. ]'
                 ),
-                _react3.default.createElement(
+                _react2.default.createElement(
                     _reactBootstrap.ListGroup,
                     null,
                     _demos.demos.map(function (demo) {
-                        return _react3.default.createElement(
+                        return _react2.default.createElement(
                             _reactBootstrap.ListGroupItem,
                             { key: demo.url,
                                 href: '#/' + demo.url,
@@ -117,6 +79,6 @@ var Index = _wrapComponent('Index')(function (_Component) {
     }]);
 
     return Index;
-}(_react2.Component));
+}(_react.Component);
 
 exports.default = Index;

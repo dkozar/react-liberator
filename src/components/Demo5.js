@@ -107,8 +107,8 @@ export default class Demo5 extends Component {
             <div>
                 <Alert bsStyle="info">
                     <h3>Demo 5 - Full screen sync</h3><br/>
-                    <strong>Click the button to show panel in full screen.</strong>
-                    <br/><br/>It should be displayed in an overlay.<br/><br/>
+                    <strong>Click the button to show panel in full screen.</strong><br/><br/>
+                    It should be displayed in an overlay.<br/><br/>
                     Its size is kept in sync with a full screen state (maximized when in full screen mode).<br/><br/>
                     <SourceLink>Demo5.js</SourceLink><br/><br/>
                 </Alert>

@@ -35,24 +35,10 @@ module.exports = {
       'root': 'Lodash'
     }
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.NormalModuleReplacementPlugin(/\/react\/lib\/cloneWithProps/, "../../react-clonewithprops/index.js"),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    })
-  ],
+  plugins: [],
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: "babel-loader",
       exclude: /node_modules/,
       include: path.join(__dirname, 'src')
