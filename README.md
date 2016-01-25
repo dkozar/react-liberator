@@ -159,3 +159,5 @@ Runs all the builds: *build* + *dist* + *demo*.
 ![Liberator!](http://dankokozar.com/images/react-liberator-2.png)
 
 ![Liberator!](http://dankokozar.com/images/react-liberator-3.png)
+
+[![Downloads!](https://nodei.co/npm-dl/react-liberator.png?months=1)](http://dkozar.github.io/react-liberator/)
