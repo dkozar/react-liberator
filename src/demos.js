@@ -18,4 +18,8 @@ export var demos = [{
     url: 'demo5',
     title: 'Demo 5 - Full screen sync',
     description: 'Initiating a full screen mode and keeping the maximized panel in sync.'
+}, {
+    url: 'demo6',
+    title: 'Demo 6 - Multiple children',
+    description: 'Multiple children wrapped into single Liberator.'
 }];

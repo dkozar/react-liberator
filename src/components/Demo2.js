@@ -43,7 +43,7 @@ export default class Demo2 extends Component {
 
     onTextChange(text) {
         this.setState({
-            text: text
+            text
         });
     }
 

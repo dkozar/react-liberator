@@ -21,6 +21,7 @@ http://dkozar.github.io/react-liberator/
 * [Demo 3 - Activate / deactivate](http://dkozar.github.io/react-liberator/#/demo3)
 * [Demo 4 - Maximized popup](http://dkozar.github.io/react-liberator/#/demo4)
 * [Demo 5 - Full screen sync](http://dkozar.github.io/react-liberator/#/demo5)
+* [Demo 6 - Multiple children](http://dkozar.github.io/react-liberator/#/demo6)
 
 ## :zap: Usage
 

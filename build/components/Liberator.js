@@ -23,6 +23,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var DEFAULT_LIBERATOR_LAYER_ID = '___liberator___';
+var DEFAULT_LIBERATOR_LAYER_ELEMENT_TYPE = 'div';
 
 var Liberator = function (_Component) {
     _inherits(Liberator, _Component);
@@ -55,21 +56,24 @@ var Liberator = function (_Component) {
     }, {
         key: 'activate',
         value: function activate() {
-            var layerId = this.props.layerId,
-                layerElement = document.getElementById(layerId),
-                // layer lookup
-            wrapperElement;
+            var layerElement = this.props.layer,
+                layerId,
+                wrapperElement;
+
+            if (!layerElement) {
+                layerId = this.props.layerId, layerElement = document.getElementById(layerId); // layer lookup
+            }
 
             if (!layerElement) {
                 // if we haven't found the predefined div, we're creating it on the fly
-                layerElement = document.createElement('div');
-                layerElement.setAttribute("id", layerId);
+                layerElement = document.createElement(this.props.layerElementType);
+                layerElement.setAttribute('id', layerId);
                 document.body.appendChild(layerElement);
             }
 
             this.state.layerElement = layerElement;
 
-            // we're creating the wrapper element on the fly
+            // we're creating a wrapper element on the fly
             // we're rendering the component into this element when active
             wrapperElement = document.createElement('div');
             wrapperElement.className = this.props.className || '';
@@ -165,12 +169,16 @@ exports.default = Liberator;
 Liberator.propTypes = {
     active: _react2.default.PropTypes.bool,
     visible: _react2.default.PropTypes.bool,
+    layer: _react2.default.PropTypes.node,
     layerId: _react2.default.PropTypes.string,
+    layerElementType: _react2.default.PropTypes.string,
     autoCleanup: _react2.default.PropTypes.bool
 };
 Liberator.defaultProps = {
     active: true, // popping up by default
     visible: true, // visible by default
+    layer: null, // we could pass the layer element to render the popup to (takes precedence to layerId/layerElementType),
     layerId: DEFAULT_LIBERATOR_LAYER_ID, // the ID of the element to render the popup to,
+    layerElementType: DEFAULT_LIBERATOR_LAYER_ELEMENT_TYPE, // the type of the element to render the popup to,
     autoCleanup: false // automatically destroying the layer when having no child elements
 };

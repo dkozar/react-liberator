@@ -153,7 +153,7 @@ var Demo5 = function (_Component) {
             ) : null,
                 popup = _react2.default.createElement(
                 _reactBootstrap.Panel,
-                { bsStyle: 'primary', className: 'indent-top', header: this.props.params.title || panelTitle },
+                { bsStyle: 'primary', className: 'indent-top', header: panelTitle },
                 alert,
                 _react2.default.createElement(
                     _reactBootstrap.Button,
@@ -164,7 +164,7 @@ var Demo5 = function (_Component) {
                 ),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement('br', null),
-                this.props.params.text || text
+                text
             );
 
             return _react2.default.createElement(

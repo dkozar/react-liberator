@@ -97,10 +97,10 @@ export default class Demo5 extends Component {
             ) : null,
 
             popup = (
-                <Panel bsStyle="primary" className="indent-top" header={this.props.params.title || panelTitle}>
+                <Panel bsStyle="primary" className="indent-top" header={panelTitle}>
                     {alert}
                     <Button bsStyle="primary" bsSize="large" onClick={this.onButtonClick}>{buttonIcon}&nbsp;{buttonText}</Button><br/><br/>
-                    {this.props.params.text || text}
+                    {text}
                 </Panel>
             );
 

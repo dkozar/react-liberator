@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {render} from 'react-dom';
 
 const DEFAULT_LIBERATOR_LAYER_ID = '___liberator___';
+const DEFAULT_LIBERATOR_LAYER_ELEMENT_TYPE = 'div';
 
 export default class Liberator extends Component {
 
@@ -26,20 +27,25 @@ export default class Liberator extends Component {
     }
 
     activate() {
-        var layerId = this.props.layerId,
-            layerElement = document.getElementById(layerId), // layer lookup
+        var layerElement = this.props.layer,
+            layerId,
             wrapperElement;
 
         if (!layerElement) {
+            layerId = this.props.layerId,
+            layerElement = document.getElementById(layerId); // layer lookup
+        }
+
+        if (!layerElement) {
             // if we haven't found the predefined div, we're creating it on the fly
-            layerElement = document.createElement('div');
-            layerElement.setAttribute("id", layerId);
+            layerElement = document.createElement(this.props.layerElementType);
+            layerElement.setAttribute('id', layerId);
             document.body.appendChild(layerElement);
         }
 
         this.state.layerElement = layerElement;
 
-        // we're creating the wrapper element on the fly
+        // we're creating a wrapper element on the fly
         // we're rendering the component into this element when active
         wrapperElement = document.createElement('div');
         wrapperElement.className = this.props.className || '';
@@ -122,12 +128,16 @@ export default class Liberator extends Component {
 Liberator.propTypes = {
     active: React.PropTypes.bool,
     visible: React.PropTypes.bool,
+    layer: React.PropTypes.node,
     layerId: React.PropTypes.string,
+    layerElementType: React.PropTypes.string,
     autoCleanup: React.PropTypes.bool
 };
 Liberator.defaultProps = {
     active: true, // popping up by default
     visible: true, // visible by default
+    layer: null, // we could pass the layer element to render the popup to (takes precedence to layerId/layerElementType),
     layerId: DEFAULT_LIBERATOR_LAYER_ID, // the ID of the element to render the popup to,
+    layerElementType: DEFAULT_LIBERATOR_LAYER_ELEMENT_TYPE, // the type of the element to render the popup to,
     autoCleanup: false // automatically destroying the layer when having no child elements
 };
