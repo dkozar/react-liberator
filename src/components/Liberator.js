@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 
 const DEFAULT_LIBERATOR_LAYER_ID = '___liberator___';
 const DEFAULT_LIBERATOR_LAYER_ELEMENT_TYPE = 'div';
+const DEFAULT_LIBERATOR_MULTIPLE_CHILDREN_MARKER = 'react-liberator-multi';
 
 export default class Liberator extends Component {
 
@@ -17,16 +18,16 @@ export default class Liberator extends Component {
 
     componentWillMount() {
         if (this.props.active && this.props.visible) {
-            this.activate();
+            this.activate(this.props.children);
             this.renderInPopup(this.props.children);
         }
     }
 
     componentWillUnmount() {
-        this.deactivate();
+        this.deactivate(this.props.children);
     }
 
-    activate() {
+    activate(children) {
         var layerElement = this.props.layer,
             layerId,
             wrapperElement;
@@ -48,24 +49,38 @@ export default class Liberator extends Component {
         // we're creating a wrapper element on the fly
         // we're rendering the component into this element when active
         wrapperElement = document.createElement('div');
-        wrapperElement.className = this.props.className || '';
+        if (this.props.className) {
+            wrapperElement.className = this.props.className;
+        }
         this.state.wrapperElement = wrapperElement;
 
         layerElement.appendChild(wrapperElement);
+
+        this.props.onActivate({
+            layer: this.state.layerElement,
+            wrapper: this.state.wrapperElement,
+            children: children
+        });
     }
 
-    deactivate() {
+    deactivate(children) {
         var wrapperElement = this.state.wrapperElement,
             layerElement = this.state.layerElement;
 
+        this.props.onDeactivate({
+            layer: this.state.layerElement,
+            wrapper: this.state.wrapperElement,
+            children: children
+        });
+
         if (wrapperElement) {
+            ReactDOM.unmountComponentAtNode(wrapperElement);
             if (layerElement) {
                 layerElement.removeChild(wrapperElement);
             }
             this.setState({
                 wrapperElement: null
             });
-            ReactDOM.unmountComponentAtNode(wrapperElement);
         }
         if (layerElement && !layerElement.childNodes.length &&
                 (this.props.autoCleanup || this.props.layerId === DEFAULT_LIBERATOR_LAYER_ID)) { // removing the default layer automatically
@@ -86,9 +101,9 @@ export default class Liberator extends Component {
 
         if (changedActiveState || changedVisibility) {
             if (shouldRenderInPopup) {
-                this.activate();
+                this.activate(newProps.children);
             } else {
-                this.deactivate();
+                this.deactivate(newProps.children);
             }
         }
 
@@ -113,7 +128,10 @@ export default class Liberator extends Component {
         }
 
         if (children.length > 1) {
-            return (<div>
+            // ReactDOM.render currently renders a single element only (https://facebook.github.io/react/docs/top-level-api.html#reactdom.render)
+            // Until the API changes, we have to wrap children inside the additional DIV
+            // We're marking this DIV with a class, so we the caller could differentiate this case
+            return (<div className={DEFAULT_LIBERATOR_MULTIPLE_CHILDREN_MARKER}>
                 {children}
             </div>);
         }
@@ -131,7 +149,9 @@ Liberator.propTypes = {
     layer: React.PropTypes.node,
     layerId: React.PropTypes.string,
     layerElementType: React.PropTypes.string,
-    autoCleanup: React.PropTypes.bool
+    autoCleanup: React.PropTypes.bool,
+    onActivate: React.PropTypes.func,
+    onDeactivate: React.PropTypes.func
 };
 Liberator.defaultProps = {
     active: true, // popping up by default
@@ -139,5 +159,7 @@ Liberator.defaultProps = {
     layer: null, // we could pass the layer element to render the popup to (takes precedence to layerId/layerElementType),
     layerId: DEFAULT_LIBERATOR_LAYER_ID, // the ID of the element to render the popup to,
     layerElementType: DEFAULT_LIBERATOR_LAYER_ELEMENT_TYPE, // the type of the element to render the popup to,
-    autoCleanup: false // automatically destroying the layer when having no child elements
+    autoCleanup: false, // automatically destroying the layer when having no child elements
+    onActivate() {},
+    onDeactivate() {}
 };

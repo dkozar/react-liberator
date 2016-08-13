@@ -65,7 +65,7 @@ Or use it as a switch:
 </Liberator>
 ```
 
-Or render it to a predefined div:
+Or render it to the predefined element:
 
 ```js
 <Liberator layerId="foo">
@@ -73,6 +73,25 @@ Or render it to a predefined div:
 </Liberator>
 
 <div id="foo"></div>
+```
+
+Use callbacks:
+
+```js
+<Liberator onActivate={function(e) {console.log('onActivate', e)}}
+    onDeactivate={function(arg) {console.log('onDeactivate', e)}}>
+    <div>Popup</div>
+</Liberator>
+```
+
+These callbacks are being executed with an object as argument:
+
+ ```js
+{
+    layer: // the layer to which liberated components are rendered to (multiple Liberators could render into the same layer)
+    wrapper: // wrapper element for component rendered by THIS Liberator
+    children: children // original children provided to THIS Liberator
+});
 ```
 
 ## :truck: Installation

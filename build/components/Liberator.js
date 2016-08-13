@@ -24,6 +24,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var DEFAULT_LIBERATOR_LAYER_ID = '___liberator___';
 var DEFAULT_LIBERATOR_LAYER_ELEMENT_TYPE = 'div';
+var DEFAULT_LIBERATOR_MULTIPLE_CHILDREN_MARKER = 'react-liberator-multi';
 
 var Liberator = function (_Component) {
     _inherits(Liberator, _Component);
@@ -44,18 +45,18 @@ var Liberator = function (_Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             if (this.props.active && this.props.visible) {
-                this.activate();
+                this.activate(this.props.children);
                 this.renderInPopup(this.props.children);
             }
         }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            this.deactivate();
+            this.deactivate(this.props.children);
         }
     }, {
         key: 'activate',
-        value: function activate() {
+        value: function activate(children) {
             var layerElement = this.props.layer,
                 layerId,
                 wrapperElement;
@@ -76,25 +77,39 @@ var Liberator = function (_Component) {
             // we're creating a wrapper element on the fly
             // we're rendering the component into this element when active
             wrapperElement = document.createElement('div');
-            wrapperElement.className = this.props.className || '';
+            if (this.props.className) {
+                wrapperElement.className = this.props.className;
+            }
             this.state.wrapperElement = wrapperElement;
 
             layerElement.appendChild(wrapperElement);
+
+            this.props.onActivate({
+                layer: this.state.layerElement,
+                wrapper: this.state.wrapperElement,
+                children: children
+            });
         }
     }, {
         key: 'deactivate',
-        value: function deactivate() {
+        value: function deactivate(children) {
             var wrapperElement = this.state.wrapperElement,
                 layerElement = this.state.layerElement;
 
+            this.props.onDeactivate({
+                layer: this.state.layerElement,
+                wrapper: this.state.wrapperElement,
+                children: children
+            });
+
             if (wrapperElement) {
+                _reactDom2.default.unmountComponentAtNode(wrapperElement);
                 if (layerElement) {
                     layerElement.removeChild(wrapperElement);
                 }
                 this.setState({
                     wrapperElement: null
                 });
-                _reactDom2.default.unmountComponentAtNode(wrapperElement);
             }
             if (layerElement && !layerElement.childNodes.length && (this.props.autoCleanup || this.props.layerId === DEFAULT_LIBERATOR_LAYER_ID)) {
                 // removing the default layer automatically
@@ -116,9 +131,9 @@ var Liberator = function (_Component) {
 
             if (changedActiveState || changedVisibility) {
                 if (shouldRenderInPopup) {
-                    this.activate();
+                    this.activate(newProps.children);
                 } else {
-                    this.deactivate();
+                    this.deactivate(newProps.children);
                 }
             }
 
@@ -145,9 +160,12 @@ var Liberator = function (_Component) {
             }
 
             if (children.length > 1) {
+                // ReactDOM.render currently renders a single element only (https://facebook.github.io/react/docs/top-level-api.html#reactdom.render)
+                // Until the API changes, we have to wrap children inside the additional DIV
+                // We're marking this DIV with a class, so we the caller could differentiate this case
                 return _react2.default.createElement(
                     'div',
-                    null,
+                    { className: DEFAULT_LIBERATOR_MULTIPLE_CHILDREN_MARKER },
                     children
                 );
             }
@@ -172,7 +190,9 @@ Liberator.propTypes = {
     layer: _react2.default.PropTypes.node,
     layerId: _react2.default.PropTypes.string,
     layerElementType: _react2.default.PropTypes.string,
-    autoCleanup: _react2.default.PropTypes.bool
+    autoCleanup: _react2.default.PropTypes.bool,
+    onActivate: _react2.default.PropTypes.func,
+    onDeactivate: _react2.default.PropTypes.func
 };
 Liberator.defaultProps = {
     active: true, // popping up by default
@@ -180,5 +200,7 @@ Liberator.defaultProps = {
     layer: null, // we could pass the layer element to render the popup to (takes precedence to layerId/layerElementType),
     layerId: DEFAULT_LIBERATOR_LAYER_ID, // the ID of the element to render the popup to,
     layerElementType: DEFAULT_LIBERATOR_LAYER_ELEMENT_TYPE, // the type of the element to render the popup to,
-    autoCleanup: false // automatically destroying the layer when having no child elements
+    autoCleanup: false, // automatically destroying the layer when having no child elements
+    onActivate: function onActivate() {},
+    onDeactivate: function onDeactivate() {}
 };
