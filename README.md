@@ -90,8 +90,8 @@ These callbacks are being executed with an object as argument:
 {
     layer: // the layer to which liberated components are rendered to (multiple Liberators could render into the same layer)
     wrapper: // wrapper element for component rendered by THIS Liberator
-    children: children // original children provided to THIS Liberator
-});
+    children: // original children provided to THIS Liberator
+}
 ```
 
 ## :truck: Installation
