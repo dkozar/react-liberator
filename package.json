@@ -1,6 +1,6 @@
 {
   "name": "react-liberator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Allows React component to be rendered away from its siblings",
   "main": "index.js",
   "scripts": {
@@ -59,7 +59,7 @@
     "fullscreen": "^1.0.2",
     "history": "^1.17.0",
     "lodash": "^4.0.0",
-    "react-bootstrap": "^0.28.2",
+    "react-bootstrap": "^0.30.7",
     "react-router": "^1.0.3",
     "react-wrappy-text": "^1.1.1",
     "rimraf": "^2.4.3",
