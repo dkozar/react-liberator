@@ -8,9 +8,9 @@ Enables React component to render its DOM away from its siblings.
 
 This is the foundation for building a proper windowing system.
 
-[![Liberator!](http://dankokozar.com/images/react-liberator-1.png)](http://dkozar.github.io/react-liberator/)
+[![Liberator!](./images/react-liberator-1.png)](http://dkozar.github.io/react-liberator/)
 
-[![Liberator!](http://dankokozar.com/images/react-liberator-popup.png)](http://dkozar.github.io/react-liberator/)
+[![Liberator!](./images/react-liberator-popup.png)](http://dkozar.github.io/react-liberator/)
 
 ## :tv: Demo
 
@@ -176,8 +176,8 @@ Runs all the builds: *build* + *dist* + *demo*.
 
 ## :camera: Screenshots:
 
-![Liberator!](http://dankokozar.com/images/react-liberator-2.png)
+![Liberator!](./images/react-liberator-2.png)
 
-![Liberator!](http://dankokozar.com/images/react-liberator-3.png)
+![Liberator!](./images/react-liberator-3.png)
 
 [![Downloads!](https://nodei.co/npm-dl/react-liberator.png?months=1)](https://www.npmjs.com/package/react-liberator)
